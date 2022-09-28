@@ -1,0 +1,458 @@
+
+
+ Behavioral Patterns
+
+	they are all different; no central theme 
+
+	ChainOfResponsability
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Si tratta fondamentalmente di trattare una sequenza di processi che si occupano di individuare
+			in modo scalare il fattore di responsabilità che una determinata invocazione sta facendo verso un
+			altra chiamata. Immaginiamo in una ipotetica industria di auto che vi sia un processo da sottporre
+			alle auto in uscita dove un laboratorio si deve prendere cura di controllare gli scarichi per l'impatto
+			ambientale. Quindi il software deve essere definito come una componente che prende in carico ogni
+			responabilità nella catenza dei controlli affinchè il risultato non sia falsato. Nel laboratorio
+			i vari reparti non possono usare dati e passarli al reparto successivo dove ogni reparto potrebbe
+			andare avanti nel processo se non si attestano determinati criteri di emissione scarichi.
+			E un reparto non può falsare sul processo che lo precede da un altro reparto ma può solo interrompere
+			la catena dei processi per non farla andare avanti al reparto proprio e a quello successivo.
+			Nella catena immaginiamo un Dipendente un Manager e il CEO e se in un incidente per qualsiasi motivo
+			si vuole risalire al comportamento non etico di uno di questi repsonsabili il software si prenderà
+			carico nell'esecuzione dei processi di tracciare le chiamate dai reparti.
+			Ma prendiamo un altro esempio di ChainOfResponsability, supponiamo che ci sia un elemento grafico
+			su un form ad esempio renderizzando il form in WPA a video e che quindi c'è tutta una catena di
+			responsabilità in termini di componenti dove possiamo gestire un azione come il click. L'handler
+			dell'evento che sta per fare eseguire l'azione per il clic controllerà le sue informazioni ed 
+			eventualmente interomperà la catena degli eventi successivi se qualcosa è andato storto o proseguire
+			ad esempio nella casella gruppo che gestirà ricevendo l'evento il suo metodo speciale. Un altro
+			esempio in una ipotetico gioco di carte collezionabili in modo da avere un sacco di creature che
+			definiscono nel gioco un valore di attacco e uno di difesa, dove ad esempio ogni carta ricevuta diventa
+			una catena di responsabilità che guarda non solo la carta sottostante ma anche tutte le altre.
+			Quindi una cate di responsabilità è essenzialmente una catena di componenti che hanno la possibilità
+			di elaborare un comando o una query e possono avere opzionalmente una sorta di implementazione predefinita
+			e possono anche terminare la catena di elaborazioni e impedire che il resto degli oggetti nella catena
+			continui le altre elaborazioni.
+			Command And Query Separation, concettualmente alla catena di responsabilità suddivide e iterpreta nel
+			modello un azione che usa il Command per inviare qualcosa quando stai chiedendo una azione o un cambiamento,
+			quindi per esempio se si vuole impostare l'età di una creatura stiamo per eseguire un comando che specifica
+			un nuovo valore e poi rileggerlo per come lo hai impostato, un altra cosa è la query che richiede
+			informazioni senza necessarimente cambiare nulla, quindi stai chiedendo qualcosa senza modificare nulla.
+			Quindi per il CQS hai mezzi separati per inviare comandi e query. Per cui accedi direttamente ad un
+			campo di una particolare classe e lanci un messaggio per farti dare il contenuto del campo oppure per 
+			inviare un valore da impostare come valore del campo della classe. Grazie alla catena di responsabilità
+			quindi puoi inviare questi comandi o query intervenendo nella catena sovrascrivendo il comportamento o
+			addirittura la query.
+			Riassumendo nella Catena delle Responsabilità si ha un elenco di tutte le componenti che formulano
+			ipotesi di attribuzioni di proprietà per l'oggetto susseguendosi e facendo puntare al componente successivo
+			nella catena delle responsabilità. In alternativa si può avere un costrutto centralizzato in modo da 
+			avere un unico posto in cui hai una lista o un elenco collegato o similarmente un insieme di eventi come
+			nel secondo esempio, dove vengono mantenute tutte le parti delle responsabilità e i processi sono tutti
+			i componenti effettivi per gestire un particolare evento.
+
+	Command
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Nella normale programmazione il comando è inteso come un metodo pubblico in una classe oggetto come
+			ad esempio MioObj.Command(5). Un problema noto in questo è queste informazioni sono deperibili e nel
+			senso stretto del termine una volta eseguito il comando per impostare quel valore per una determianta
+			proprietà non puoi semplicemente andare avanti per annullare l'ultimo comando e tornare al comando
+			precedente. Come anche non è possibile in modo simile serializzare una sequenza di azioni o cause.
+			E' vero che esistono e sono state aggiunte nelle ultime versioni dei linguaggi alcune funzionalità
+			con le lambda e si può serializzare l'albero delle espressioni ma non è affatto semplice.
+			Quindi quello che si vuole con questo modello è ottenere in modo semplice una serie di oggetti
+			che rappresentano effettivamente delle operazioni. Per portare un idea vogliamo ad esempio un oggetto
+			separato che rappresenti il valore per una determinata proprietà dell'ggeto stesso.
+			O sempre ragionando in termini di Valore oggetto e non solo valore eseguire anche operazioni al momento
+			del cambio della proprietà. Nelle GUI applicative si vede spesso questo tipo di pattern applcato ad
+			un elenco che conserva una serie di azioni per l'undo redo macro etc. 
+			Quindi possiamo vedere come questo pattern di comando è qualcosa che permette di realizzare una
+			funzionalità di undo multi livello o permettere agli utenti di registrare ed eseguire macro etc.
+			Pertanto un modello di progettazione di comando consente essenzialmente di creare un oggetto che 
+			rappresenti un istruzione per eseguire una determinata azione. Questo contiene tutte le informazini
+			necessarie per l'azione da intraprendere.
+			Ricapitolando un modello di Command prevede una classe che incapsula in dettaglio una determinata
+			operazione e che questa classe Command venga usata come un oggetto separato potendola archiviare 
+			in memoria o su un disco e in molti casi definsce anche le isturzioni per riprisitnare la stessa
+			operazione in modo inverso. Avere il Command non è sufficente perchè è necessario qualche tipo 
+			di processore dei comandi che sia in grado di prendere questo comando e applicarlo all'oggetto a cui
+			punta il comando e definire eventualmente istruzioni aggiuntive come il rollback o l'annullamento.
+			Da qui puoi anche avere diversi tipi di command come ad esempio quello composito che potrebbe 
+			rivelarsi utile er situazioni di macro o nel più dei casi agisce come un command ma operando su 
+			un set di command da eseguire come singolo command invocabile a sua volta, ed nche questo set composito
+			può avere istruzioni per il rollback come nel caso del singolo.
+
+	Interpreter
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			L'interprete è un campo di progettazione separato dell'informatica, può essere arduo descrivere
+			tutte le sfaccettature di questo modello, spazia così tanto che ci vorrebbe un capitolo dedicato
+			a tutte le possibilità intrinseche di realizzare un buon modello di interprete.
+			Qui viene trattato ad alto livello e sper scopi puramente applicativi. Quindi essenzialmente l'idea
+			di interprete è dare l'idea di un testo da elaborare e interpretare sottoforma di analisi sintattica
+			per realizzare codice ad oggetti su cui operare.
+			Se prendiamo ad esempio il nostro codice sorgente su questo ambiente o scriviamo una espressione
+			regolare quello che viene preso in input è il testo che si scrive e il modello si deve occupare di
+			elaborarlo per ottenere un eseguibile mentre per le espressioni regolari una vera e propria macchina
+			di stati, e tutto questo deve essere una volta analizzato trasformato in strutture orientate agli
+			oggetti OOP dato che siamo in un ambiente che opera in questo modalità quale è il c#, se questo fosse
+			ad esempio in un contesto dove si sviluppa in c la resa dell'inteprprete non era come destinazione
+			quella di rendere oggetti OOP ma piuttosto solo strutture. Ecco che parlando di interpreti diciamo
+			solo che sono qualsiasi cosa legata alla programmazione. Per fare un nesso con quello che vediamo
+			tutti i giorni il Comilatore del Nostro Codice Sorgente è un Interprete in un ambiene di sviluppo
+			integrato.Tutto in questo ambienete di programmazione usa l'inteprete per fare qualcosa, il builder
+			per compilare l'ide per fare l'analisi sintattica etc. Questo lo scopo dellpinterprete trasformare
+			questo codice sorgente in una sorta di rappresentazione orientata agli oggetti che possono successivamente
+			attraversare per capire lo stato delle cose.
+			Un altro esempio sono i formati di file strutturati come l'HTML l'XML il JSon etc. e per operare
+			su questi file hai bisogno di un Interpret che trasformi effettivamente questi formati in una
+			rappresentazione di uno stato di oggetti.Se prendiamo ad esempio l'html in pasto ad un processo 
+			di lavorazione sul dom del documento vediamo appunto che l'interprete sottopone tutto il testo 
+			dell'html per sviluppare classi di oggetti relativi a posizioni del dom della pagina per poter
+			essere trattati come oggetti e non più come testo.
+			Un altro esempio è un testo che esprime espressioni numeriche, e quindi adottando un interprete
+			il testo e i numeri che sono presenti in questa stringa assumeranno oggetti e tipi di dato conreti
+			nel contesto del programma, e a quel punto potranno essere usati per valutare l'espressione testuale
+			in una espressione binaria per calcolare risultati. Un altro esempio è l'espressione regolare che vengono
+			analizzati da questi interpreti e trasformarsi in macchine di stato appropriate e fatto questo la
+			macchina di stato e verificare un contenuto in modo operativo per ricerche e confronti letterali.
+			L'intero obiettivo di trasformare le stringhe in in costrutti orientati agli oggetti basati
+			su un processo piuttosto complicato.
+			Il modello di Interpreter è un modello di progettazione con un disegno molto ampio, ma in generale
+			è un componente che sa come elaborare i dati del testo e della struttura e lo fa in fasi, in genere 
+			prende il testo e lo divide in token lessicali separati e questo è chiamato lexing dopodichè arriva
+			la vera e proria interpretazione della sequenza dei token catturati ed è chiamata parsing.
+			Naturalmente nel mondo reale nessuno si mette da 0 a creare un sistema completo di Interprer e
+			fortunatamente ci sono stati prima di noi che lo hanno fatto e migliorato nel tempo. Possiamo
+			usare questo Modello di Interpreter sempre per sistemi semplici che servono nel contesto di funzioni
+			o programmi , ma per sistemi molto orientati a questo tipologia di Interpreter è sempre bene usare
+			strumenti come ANTLR che supporta il riconoscimento automatico Lexer del testo e è un framework
+			completo per la generazione dei parser permettendo di usare il codice del linguaggio su cui stiamo
+			operando per usarlo nel nostro programma. Nella pagina dedicata al download oltre al framework è
+			disponibile il plugin adatto al sistema di cui vogliamo generare il codice sorgente ad esempio per .net
+
+	Iterator
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Come attraversare strutture di dati partendo da un nodo verso tutti gli altri in una funzione che
+			iteri tra di esse mantenedo un untamento su quello che ci troviamo. Il patter Iterator è uno di 
+			quei modelli che cerca di individuare una soluzione a questo problema nei diversi linguaggi di 
+			programmazione. Questa classe di iterazione aiuta e facilita l'attraversamento su questi nodi di
+			un determinato insieme di strutture dati. In definitiva come già accennato l'iteratore fa due cose
+			fondamentlmente il primo è quello di mantenere il riferimento all'elemento corrente in cui ci 
+			troviamo e il secondo è quello di sapere come spostarsi all'elemento successivo sapendo anche quando
+			è arrivato alla fine degli elementi in coda. Quindi l'iterator è un costrutto implicito nel senso che
+			se usiamo la nostra enumerable<t> nel framework di .net ci aiuta a differenza degli altri linguaggi
+			ad avere questo già intrinseco in questo framework che si occupa lui di ottenere una macchina a stati
+			finiti nel ritornare lo stantment rendendoci la vita molto facile per questo modello di programmazione
+			in quanto ha tutte le funzionalità incorporate. Concludiamo dicendo che l'iteratore è un oggetto o
+			in .net un metodo che facilita l'attraversamento dei dati strutturati.
+			Infine per definizione un Iterator è generalmente un componente che specifica in che modo esatto
+			si può attraversare un oggetto, come nell'esempio dell'albero binario hai la possibilità di definire
+			come scorrere sui nodi per iterare tra di essi potendo fare scorrimenti ordinari, post ordinari pre ordinati
+			etc. La differenza tra un Oggetto Iteratore da implementare in modo classico come ad esempio lo si
+			fa con c++ o altri e un Metodo intrinseco a c# che espone l'oggetto come enumerabile (GetEnumerator())
+			è che il primo ha molti problemi a trattarlo in modo ricorsivo se non si implementa in modo corretto
+			una macchina a stati dovendo definire sempre un campo corrente ogni volta che si itera come nell'esempio
+			con la chiamata MoveNext() che si deve preoccupare di aggiornare la proprietà corrente. Nel secondo
+			caso invece avendo a disposizione questa macchina a stati già gratutita nel framework .net c# tratta
+			l'insieme per un oggetto dichiarato come insiemte IEnumerable<T> in modo nativo e con poco sforzo da
+			parte dello sviluppatore, e si può  anche ovviare a implementare IEnumerable<T> ma semplicemente
+			aggiungere il metodo standard GetEnumerator() che restituisce lo stato corrente attraversabile e rendere
+			l'oggetto in cui è usato questo metodo di fatto enumerabile; di contesto .net ha questa implementazione
+			chiamata DuckTyping che di fatto restituisce e non c'è bisogno di implementare il resto delle operazioni
+			di stato come il set del current e il MoveNext() e grazie al metodo GetEnumerator() lo spostamento al 
+			succesivo nodo e l'impostazione del nodo corrente come attivo e quindi usare la classe come enumerata
+			di un insieme di strutture diventa facile da usare nel contesto di un foreach.
+
+	Mediator
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Un mediatore è un componente centrale che fondamentalmente si occupa di facilitare la comunicazione
+			tra componenti lasciando che i componenti siano a conoscenza della presenza o dell'assenza di altri
+			componenti nel sistema. Quindi la motivazione di questo modello di progettazione è da attribuire in
+			tutti quei casi in cui ogni componente viene liberato dal lavoro di dover comunicare con tutti gli 
+			elementi coinvolti nel sistema dovendosi sovraccaricare di codice e dove componenti diversi devono
+			ripetere quello stesso codice e quelle stesse attenzioni caso per caso. Vediamo che la bontà di questo 
+			pattern si riflette bene nella centralità delle comunicazioni tra questi oggetti.
+			Facciamo l'esempio di una chat room dove componenti diversi come gli utenti i servizi e altri attori
+			debbano partecipare entrando ed uscendo dal sistema in qualsiasi momento, questo può significare ad
+			esempio che i diversi partecipanti e attori del sistema non abbiano riferimenti tra di loro perchè
+			portano a complessità e rischio di fallimento, piuttosto utilizzando un sistema centrale per registrare
+			i propri stati da trasmettere agli altri diventa più logico e manutenibile e questo compnente centrale
+			appunto è una classe Mediator che orchestra questa comunicazione di stati tra i diversi sottoscrittori.
+			Quindi possiamo dire che la progettazione di un mediatore richiede che il componente centrale che fa da
+			Mediator semplifichi questi passaggi di stato tra componenti durante la comunicazione senza necessariamente
+			per il componente mittente sia consapevole degli stati e dei metodi di un altro componente o sia obbligato
+			ad avere un accesso diretto o referenziato all'altro componente.
+			In genere un Mediator è anche un Singleton in quanto non dovrebbero esserci casi in cui ce ne sia
+			bisogno più di uno stesso tipo. La registrazione dei componenti del sistema presso questo Mediator è
+			resa disponibile dai suoi metodi interni ed è fattibile istanziare un Mediator dentro un Container di
+			Dipendence Injection per ottenere contesti singleton della classe Mediator come è possibile vedere 
+			nell'esempio che usa la dll nota MediatR. Ogni Mediator si occupa della comunicazione in modo
+			bidirezionale con tutti i suoi componenti connessi e ogni singolo Componente deve avere le funzioni per
+			comunicare con il Mediator e allo stesso tempo gli stessi componenti devono avere funzioni che il Mediator
+			può richiamare usati per arruolare ed eseguire azioni nel componente da parte del Mediator durante il 
+			processo di notifica. E' tipico usare meccanismi di elaborazione degli eventi come l'estensione reattive
+			pre rendere la comunicazione tra componenti più facile da implementare.
+
+	Memento
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Il modello Memento è un modello che intrappola un momento temporaneo di stato e lo restituisce. In parole
+			più semplici ogni volta che operiamo su un oggetto cambiando qualcosa possiamo per determinate azioni o comportamenti
+			farci restituire l'intero oggetto impostato con quei parametri settati in quel determinato istante ed usare
+			il clone di quell'oggetto in quello stato per ripristinarlo in qualsiasi momento successivo all'esecuzione.
+			Questo momento di stato da parte di un oggetto che usa questo modello usa una sorta di token che ne definisce
+			la singolarità del momento in cui questo è stato catturato.
+			Lo si utilizza in quesi casi dove reputi necessario catturare lo stato di un singolo o un insieme di oggetti
+			per un determinato momento dell'esecuzione. Nell'esempio della banca per il deposito e il prelievo potrebbe essere
+			una buona soluzione usare questo modello , e come abbiamo visto per il Command utilizzandolo come Undo dell'operazione
+			è possibile fare un Undo o un Redo semplicemente riprendendo lo Stato conservato in una ipotetica lista di
+			comandi eseguiti, e questa lista conterrà in sè il clone della copia dell'oggetto coinvolto con tutti i suoi
+			cambiamenti in quel determinato istante. Questa lista viene definita snapshot di stati nel tempo delle singole
+			azioni effettuate sull'oggetto.
+			Per definizione il Modello Memento è un Token o Handle che si è restituito da un metodo e questo rappresenta lo
+			stato del sistema consentendoci di tornare allo stato precedente quando il token è stato effettivamente generato,
+			in genere questo token può anche non far vedere direttamente le informazioni di stato ed è generalmente un
+			costrutto immutabile che fornisce una certa quantità di informazioni sullo stato del sistema e non consente di
+			modificare il sistema a meno che non si riprenda questo token e lo si attacca nuovamente al sistema in modo esplicito
+			per poter tornare a quel deteerminato token per quel determinato momento.
+			Un particolare aspetto di questo modello di programmazione è nell'interop, se per esempio abbiamo un codice
+			compilato con c++ o kuda e vogliamo che questo codice sia usato in c# dove generalmente usiamo COM o P/Invonke
+			per servizi in parallelo permettendoci appunto di richiamare le funzioni sviluppate in codice C++ o C.
+			Succede che in questi casi richiamare una funzione dichiarata extern in C o C++ in c# la dichiariamo allo stesso
+			modo con il costrutto extern static void f(...); e decorando questo costrutto con [dllimport] il problema si pone
+			che per passare gli argomenti alla funzione puoi solo passare i puntatori e se per esempio hai una matrice di dati
+			tipo una matrice di dati a 32 bit quello che puoi fare da c# verso C++ è usare la parola ciave fixed, quindi stiamo
+			dicendo che stai passndo un puntatore intero chiamato p su qualsiasi array stai lavorando e questo sintatticamente 
+			si traduce in fixed(int* p=...) e questo p fine inserito nella funzione extern static void f(p) per essere inoltrato.
+			Il problema si pone se da C++ dove per esempio hai una classe Person con i suoi membri pubblici non puoi passarla
+			al c# in quanto la compatibilità delle classi trattati dal compilatore C++ non è uguale a quella trattata da C# e per
+			risolvere questo l'unico modo è trattare il passaggio usando il Layout della struttura dichiarando in c# che la classe
+			è una Struct definita per i campi, e applicare un modello Memento per questa tipologia di casi diventa arduo poterlo
+			fare da c# ma si deve operare in modo diverso operando da C++ per ottenere un metodo Memento che serializzi lo stato
+			di quella classe e lo possa restutire sottoforma di token (una inteeger serializzata) verso c# che si opererà a 
+			deserializzare e riportarlo nella Struct gemella.
+			Ricapitolando il modello Memento è generalmente utilizzato per il rollback degli stati arbitrari e viene definito 
+			da una classe che non ha funzioni in sè ma solo proprietà intrineche all'oggetto in cui si usa per mantenere lo stato
+			dei valori per quel determinato momento o può essere un token che valorizzato con un valore che detiene lo stato
+			delle proprietà serializzate all'interno, tali proproeità nella classe sono immutabili e per lo più sono a sola lettura.
+			L'oggetto istanza di un determinato momento di stati non è esposto direttamente ma viene restituito per ogni cambiamento
+			di stato dell'oggetto target e con cui è possibile nel codice utilizzarlo per ripristinare l'oggetto a quel determinato
+			temporale stato delle cose. Come vediamo anche negli esempi questo modello si presta bene anche per le operazioni di Undo e Redo.
+
+	NullObject
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Un comportamento per questo modello per identificare che non ha comportamenti. Il senso di questa cosa è
+			data dal fatto che questo Modello è usato come Modello di progettazione strutturale ed è la soluzione di un problema
+			particolare. Il problema per avere un idea del modello è quando un determinato componente A usa il componente B e si
+			presume che il componente B usato in A non è conosciuto. Usando il DI e cercando di iniettare nel contesto il componente B
+			ma questo lo rendi Option<B> cioè presumi che B sia di tipo B? ovvero potrebbe eserci come non potrebbe ed essre quindi 
+			un tipo Null e non vuoi scrivere per ogni chiamata a questo oggetto fare un controllo se B è nullo o è un oggetto e di che tipo
+			quindi l'unico modo nel frameowrk di .net per saperlo con poco sforzo è usare ?. ma non è una soluzione efficente in quanto 
+			si riempie tutto il codice e in ogni caso di questa evenienza di questi controlli sulla linea con ?.
+			Quindi la domanda è se c'è la possibilità di non usare un'istanza di B se questa non è valida perchè nulla?
+			Vogliamo senza fare troppo hard coded ottenere istanze di B che non fanno assolutamente nulla, e 
+			questo costruendo una classe speciale che sia no-op no-functioning ereditata da B da passare dentro A.
+			Quindi possiamo affermare che un modello NullObject è un modello di prgoettazione di un oggetto non operazionale
+			conforme alle richieste dell'interfaccia e che soddisfi le stesse richieste dell'oggetto target, in esso vengano
+			rispettate anche tutti i requisiti di dipendenza ma senza fare nulla o tratti altre implementazioni.
+			Quindi per definizione implementare questo oggetto fittizio preso dalla stessa interfaccia che implementa l'oggetto
+			reale ma con il corpo delle funzioni vuote a non fare nulla, o in quei casi dove il metodo deve restutire un null
+			ma un valore di defult con dafault(T) piuttosto che null o le proprietà sempre con un valore consono a ideintifare
+			l'oggetto come vuoto o vuoto con i giusti parametri di default per essere inteso sempre come un oggetto fittizio vuoto nullo,
+			quindi ben consapevoli che mentalmente stiamo trattando su un oggetto vuoto e che non restituisce valori rilevanti da 
+			trattare per il sistema, altrimenti trattare questo con dei valori che poi devono essere usati porta sempre a un 
+			sacco di problemi. Dobbiamo sempre tenere presente che stiamo restiuendo un Oggetto Vuoto Nullo dove il sistema si
+			aspettava un ogetto regolarmentare, e questo lo si fà per non avere durante l'esecuzione delle eccezioni da gestire.
+			Negli esempi è anche visto come usare un istanza dinamica di questi tipi di NullObject a scapito però delle prestazioni.
+
+	Observer
+
+		Quando utilizzare questo Pattern e scopi.:
+		
+			Built-in in c#. E' importante come modello di progettazione di componenti osservabili, per osservabili intendiamo
+			tutti quesi casi in cui succede qualcosa nel sistema. In un oggetto che sia osservabile viene da sè che
+			ogni cambiamento di stato dell'oggetto è notificato da questo costrutto, in un oggetto che osserva quei cambiamenti
+			opera per essere notificato a riguardo.
+			Per osservare Un oggetto target quest'ultimo può usufruire pr le notifiche di strumenti già incorporati
+			nel framework come gli eventi incorporati in questo linguaggio tramite la keywork event oppure utilizzando
+			quelle che sono delle interfacce dedicate a questa tipologia di modello la IObservable<T> e la IObserver<T> che
+			il framework rende disponibili attraverso l'uso delle estensioni reattive di cui trattiamo negli esempi, queste
+			estensioni fanno parte degli assembly a disposizione del framework e per essere usate devono essere importate dal
+			pacchetto rx-reactive. Infine si parlerà anche come utilizzare questo modello quando è necessario applicarlo
+			a un insieme di sequenze di valori piuttosto che singoli valori, partendo dal presupposto che una lista sia
+			in definitiva una collection osservabile.
+			Un Observer è un oggetto che informa il suo stato e i suoi cambiamenti verso il sistema, mentre l'osservtore usa
+			la sottoscrizione per monitorare ed essere informati sugli eventi che accadono da qualche parte nel sistema.
+			Per chiarire il Modello Observer è un approccio intrusivo e un componente Observed provvede a fornire un 
+			evento a cui si sottoscriverà il componente che vuole essere notificato Observer appunto.
+			Bisogna prestare attenzione per prevenire problemi con il multi-threading e oltre a fornire un evento per
+			notificare i sottoscrittori a cambiamenti di un singolo stato negli esempi vediamo come poter notificare il sitema
+			con più proprietà di stato o il resoconto dinamico di una proprietà che deduce solo al momento la variabile di
+			stato rispetto alle altre proprietà di stato della classe, e ancora come rendere osservabili le collection di dati o proprietà.
+			Inoltre abbiamo nel framework la possibilità di usare le interfacce già di serie per rendere l'approccio a 
+			questo modello più completo rispetto allle sole dichiarazioni di event, IObservable<T> IObserver<T> che possono
+			operare meglio su flussi di eventi e con l'ausilio dell Estesnsioni Reattive RX elaborarne le condizioni del 
+			flusso prima di inviare vere e proprie notifiche.
+
+	State
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Potenza nelle Macchine a Stato Finito. Per questo modello lo schema di progettazione suggerisce che
+			lo stato del tipo di sitema controlla il modo in cui opera quel componente e per questo si lega all'idea
+			di Mcchine a Stato Finito.
+			Quello che definiamo come Stato è uno stato delle cose che si possono o non si possono fare con un componente
+			pr fare un analogia consideriamo un Telefono, e quello che possiamo stabilire è che possiamo usare il 
+			telefono rispetto allo stato corrente in cui si trova e lo stato della linea telefonica a cui è connesso.
+			Quindi se il telefono comincia a squillare o vogliamo effettuare una chiamata è necessario alzare il telefono, e 
+			questo tradotto significa che è un requisito che è necessario per rispondere o per chiamare. Ora il telefono
+			deve anche essere in grado di parlare con qualcuno o fare una chiamata verso qualcuno, e allo stesso tempo non
+			si può fare una di queste due azioni se il telefono è ancora appoggiato e sta squillando. Se anche succede che
+			provando a chiamare qualcuno risulta la linea occupata, si rimette giù il telefono.
+			Questa analogia deve far pensare che ogni cambiamento di stato porta a Cambiamenti di stato che possono essere
+			Espliciti(Setter di proprietà dal sistema) o in risposta ad eventi (Observer Pattern). 
+			Quindi per cui si interroga l'utente su ciò che si vuole fare e quindi si passa da uno stato all'altro o anche che
+			altri sistemi che eseguono macchine a stati a loro volta esternamente fanno subire cambiamenti di stato allo stato 
+			corrente. Per esempio un trader di borsa quello che fa solitamente è Aprire una finestra e rimanere in ascolto degli
+			eventi che provengono da un mercato azionario, in questo caso è lo schema dell'observer. Quindi vediamo che la
+			macchina a stati mi porta da uno stato di connessione allo stato connesso.
+			Quindi diciamo brevemente che lo schema di progettazione dello stato è semplicemente un modello in cui il
+			comportamento dell'oggetto è determinato dal suo stato. Quindi si ha uno stato e non deve essere un campo singolo
+			o qualcosa di più articolato e che definisce il comportamento che è possibile fare o interrogare su quell'oggetto 
+			in seguito al fatto di come si trova su quello stato. E qui c'è un Paradigma importante di quando questo 
+			oggetto cambia il suo stato ed è il momento in cui Passa da uno Stato all'altro, e questo viene trattato e
+			definito Transizione in modo che venga considerato nel momento subito dopo e subito prima del cambio di stato.
+			Queste transizioni cono causate delle volte da eventi e vengono chiamati trigger di transizione. Ora abbiamo
+			questo costrutto che gestisce lo stato  e le transizioni da uno stato all'altro e che formalizzato diventa una
+			macchina a stati finiti e tipicamente è una classe che si definisce nel codice o viene importata da qualche dll.
+			E' fondamentale capire il grado di complessità se un determinato problema si vuole risolvere con una 
+			macchina a stati finiti, è necessario quindi ben identificare il problema non solo sugli stati definiti per
+			un componente ma anche definire i trigger e quindi le transizioni di stato assumibili da quel determinato componente
+			quando si trova in quello stato, se e come questi trigger possono inflenzare la mutazione di stato quando
+			provengono da eventi(Observer) e non da impostazioni del sistema (Setter), bisogna prendere quindi considerazione
+			come definire i comportamenti quando si entra in uno stato e quando si esce da quello stato fornendo magari
+			della funzioni delegate o espresse in lambda, e su questo potrebbe aiutare la libreria proposta di Steve-O Stateless
+			e dove è anche possibile specificare azioni quando un particolare evento provoca una transizione, e valutare anche
+			condizioni che guardano all'insieme dello stato corrente del componente e ne stabiliscono se le transizioni possono
+			o non possono essere effettuate quindi disabilitate completamente o temporaneamente. Insomma la macchina di stato
+			varia da complessità a complessità se in un costrutto riesci bene a colmare gli aspetti riesci a capire gli stati
+			se poi individui i momenti riesci a identificare le transizioni, la combinazione e le cause effetto.
+
+	Strategy
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Sistema di comportamento parziale specificato a runtime. In pratica questo modello di progettazione chiamato
+			Strategy fornisce un parziale comportamento per i componenti nel sistema e aumenta successivamente le potenzialità
+			con funzionalità e metodi ad hoc portati a runtime in modo preventivo.
+			Un modo per capire questo modello è pensare come esistono una moltitudine di algoritmi e questi usati nel 
+			sistema possono essere scomposti definendoli parti di livello alto e parti di livello basse.
+			Per fare un analogia pensiamo al processo di preparazione del tè. Questo può essre scomposto in processo
+			di alto livello come il processo di preparazione di una bevanda calda e quindi generalizzando un pò il problema
+			finisci con il pensare prima come fare a fornire un sistema che prepari bevande calde, che possono essere caffè
+			cioccolate e appunto il tè. Quindi in questo processo generalizzato di preparazione il livello più alto del 
+			processo è bollire l'acqua calda e versare l'acqua calda nella tazza e finisci con l'avere il passaggio successivo
+			che si occupa di fare le cose più specifiche quindi parliamo del livello più basso, nel caso del tè è prendere la bustina
+			e metterla nell'acqua calda aggiungere eventualmente il latte o il limone. Quindi riassumendo e scomponendo le parti
+			abbiamo Alto Livello = Acqua bollente e Versare nella Tazza - Basso Livello = Prendere Bustina, Metterla nell'Acauq Calda
+			e Opzionalmente Aggiungere Latte o Limone.
+			Quindi intendiamo che le cose specifiche rimangono specifiche nella parte bassa di questo algoritmo ma la parte
+			alta è sempre ripetibile allo stesso modo per tutti gli altri compiti che saranno previsti dal sistema.
+			Pertanto il modello di progettazione strategica consente essenzialmente di selezionare il comportamento esatto di
+			un sistema o di eseguire il tempo, quindi ci sono due implementazioni nel modello di progettazione definendo cosa
+			abilitare in modo esatto nel sistema da implementare in modo statico (compile-time) e cosa fare in modo dinamico (run-time).
+			Questo modello è molto noto nei linguaggi di programmazione come c e c++.
+			Per questo modello di progettazione quindi ci adoperiamo a definire un algoritmo di alto livello dopodichè definisci
+			le interfaccie che ti aspetti da ciascuna ddelle strategie da eseguire per fornire una composizione dinamica
+			o statica nel sistema usata dall'algoritmo per completare le sue operazioni indifferentemente dal tipo di oggetto
+			o risultato che si vuole usare nel sistema a runtime.
+
+	Template
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Un modello di progettazione simile a Strategy per fornire un blueprint (modello precostituito) a un altro modello
+			di progettazione per completare le sue ereditarietà. Quindi si tratta fondamentalmente di fornire i modelli di 
+			algoritmo ad alto livello di un algoritmo che sarà completato dalle sue ereditarietà. Quindi come nel modello 
+			Startegy dove scomponiamo nelle parti comuni o nelle parti di alto livello, dove lo Strategy si occupa di fare questa
+			operazione attraverso la composizione successiva nel sistema, questo intervine in modo diverso.
+			In sostanza hai un algoritmo di alto livello che utilizza un interffacia e quindi le implementazioni concrete
+			implementano effettivamente questa interfaccia e poi la usi nel sistema. Il Metodo Template è simile tranne che
+			lo fà tramite l'ereditarietà. Quindi l'algoritmo generale sarebbe una classe base astratta e quello che hai poi sono
+			classi ridefinite che implementano i membri astratti chiave ma la classe base mantiene il modello degli
+			algoritmi effettivi in modo che il metodo del modello principale sia il metodo che non è astratto che una volta
+			invocato orchestra effettivamente sull'algoritmo di alto livello.
+			Quindi per riassumere il modello di Template ci consente semplicemente di definire lo scheletro dell'algoritmo nella
+			classe base con implementazioni concrete definite in queste sotto classi.
+			L'idea del modello di progettazione Model è molto semplice alla fine, definendo quindi il livello di algoritmo
+			nelle fasi comuni quindi quelle di alto livello riportantondili in uno scheletro di classe astratta con tutti i 
+			metodi astratti usati dall'algoritmo ed eventuali proprietà internre alla classe base definibili come attributi
+			in comune con le classi derivate. Ecco quindi che le classi derivate provvederanno all'override dei metodi per
+			personalizzare il proprio schema di funzionamento traendo vantaggio dall'algoritmo che è uguale a qualche altro schema di
+			uso. Per ottenere alla fine che il punto centrale sia la funzione nella classe base a orchestrare il tutto il più
+			possibile.
+
+	Visitor
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			E' un modello di progettazione che si occupa fondamentalmente di fornire una serie di metodi che 
+			permettono di attrraversare i dati strutturati in modo omogeneo.
+			Vediamo come per definire una nuova operazione e dobbiamo definirla per un intera gerarchia di classi,
+			quindi se immagini una classe base ed un gruppo di classi discrete discendenti e su questi devi definire
+			una nuova operazione dovresti intervenire in tutte queste classi gerarchiche derivate.
+			Facendo un esempio supponiamo di avere un modello di documento in modo che sia di base formale all'inizio,
+			ma poi hai dei modelli di documento che sono composti tutti da parte diverse e sono coinvolti comunque insieme
+			per fare una composizione complicate per ottenere alla fine un intero documento per renderlo con output
+			ad esempio come formato markdown e html, quindi ti rendi conto alla fine che per renderlo stampabile hai
+			la necessità di scorrere tra questi elementi in modo omogeneo. Ora potremmo non volere riscrivere parti di
+			codice per ogni classe coinvolta nella gerarchia ma fornire un metodo un metodo a tutti i derivati che
+			per evitare di dover toccare e accedere a parti non comuni delle classi nella gerarchia, e pensare a un 
+			metodo di estensione nella classe di livello superiore è inefficace in quanto questo puà servire ma non ti
+			permette di accedere a quelle parti interne necessarie a recuperare le info opportune. Sarebbe possibile
+			quindi come soluzione al problema di stampare il documento avere un componente esterno per gestire il
+			rendering dei vari formati ma anche qui saresti costretto a implementare nella gerarchia per usare switch
+			e metodi preposti all'uso di questo componente di cui loro non dovrebbero occuparsene.
+			Quindi per cui è qui che entra in gioco il Modello Visitor che stiamo trattando, e questo in parole povere
+			è quello di fornire un componente chiamato Visitor a cui è effettivamente consentito attraversare l'intera
+			gerarchia dell'ereditarietà soggetta dalla classi concrete, ed è in genere implementanto come un singolo 
+			metodo chiamata Visit() che è propagante in tutta la gerarchia. Questo se previsto lo si fa una volta sola
+			e non si deve più tornare a mettere mani al codice interno delle classi per aggiungere elementi.
+			A parte questo metodo non ci sono ulteriori requeisti perchè questo stesso metodo funge da segnaposto e il 
+			motivo per cui esiste è quello di consentire qualcosa chiamata DoubleSend. Parlando di questo Doppio Invio
+			definiamo cos'è esattamnte la spedizione. Per prima poniamo la questione di cosa fa questo Dispatcher, e
+			ne definisce il comportamento dichiarando quale funzione chiamerà e come. Per esempio una chiamata di funzione
+			su un oggetto di tipo A e il nome della funzione B e magari con argomenti, ora abbiamo divrse forme di invio
+			e quello che hai in questo tipo è chiamato SingleDispatch e dipende dal nome della richiesta e dal tipo ricevente
+			quindi hai una singola spedizione e il metodo che verrà richiamato dipende dal nome della richiesta e dal tipo
+			destinatario. Quindi per analogia se stai chiamando su un tipo food conosci il ricevente di food e il nome del
+			metodo che devi usare, non dimenticando che possiamo fare override dei diversi metodi e questo per alcuni aspetti
+			può divenatre una metodologia valida, ma esiste poi il DoubleDispatch che dipende dal nome della richiesta e dal
+			tipo dei due ricevitori (tipo di Visitor e tipo di elemento da visitare) e qui ci supporta un trucco che permette
+			di chiamare il metodo effettivo che verrà invocato. Sintentizzando questo tipo di modello abbiamo tutta una 
+			gerarchia di classi ereditati che vogliamo attraversare per valutare espressioni Quindi partendo dalla base
+			si propag un metodo Accept() che sarà presente in tutta la gerarchia, quindi si crea nella classe di Visitor
+			una serie di metodi per ogni tipo visitabile Visit(Foo) Visit(Bar) etc, che solitamente si definisce come
+			interfaccia da implementare che sono metodi sottoposti ad override per ogni tipo ed ecco quindi che ogni metodo
+			Accept() per chiamare qualche altro tipo nella gerarchia avrà il double Dispatch grazie al fatto che per visitare
+			un altro tipo di classe nell'attraversare gli oggetti userà sempre il metodo visitor.Visit(this) ottenendo così
+			un vincolo che gli ha fornito chi l'ha chiamato dove deve essere continuata la chiamata e conoscendo il nome
+			del metodo sempre omogeno e uguale per tutti. Le alternative riportate negli esempi è usando il DLR con la keyword
+			dynamic che invocherà il metodo a prescindere se nel chi deve visitare dopo abbia o meno il metodo, e questo a 
+			discapito di possibili errori a runtime e di prestazioni minori, o usare il pattern Ciclico evitando di scrivere
+			molto più codice previsto sempre e per tutti ma renderlo in un certo senso generalizzato se implmentanto o meno e questo
+			ha maggiori prestazioni, infine lo stesso Visitatore che voglia ottenere anche un ritorno di valore al momento che
+			chiama il Visit nell'Accept() questo gli restiutsca un valore di ritorno trasformato o ridotto ai tipi primitivi, dove
+			la tecnica è la stessa ma l'Accept() sarà un T Trasform() come metodo che restiutisce un tipo e il Visit sarà un metodo
+			con nome più affine come T Reduce() che riporterà il valore dalla valutazione in corso.

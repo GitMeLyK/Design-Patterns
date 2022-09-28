@@ -1,0 +1,91 @@
+
+
+Creational Patterns
+
+ Deal with creation (construnction) of objects
+ Explicit (construnctor) vs. Implicit (DI, reflection etc)
+ Wholesale (single stantment) vs . Piecewise (step-by-step)
+
+
+	Builder
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Partendo dal presupposto che molti oggetti richiedono semplici costruttori
+			per essere istanziati, altri richiedono cerimonie più complessi per essere resi
+			disponibili come API dopo essere istanziati, ecco quindi che tramite un Pattern 
+			di Build possiamo creare in sostanza degli oggetti assemblarli allinterno di 
+			un metodo statico il più delle volte e renderlo disponibile con API nel builder
+			che sono più leggibili e intuibili per il consumatore di quest'ultimo. A differenza
+			di avere un sacco di costruttori che portano a confusione per il numero di argomenti
+			via via sempre maggiore all'interno di un oggetto il builder aiuta appunto
+			a rendere disponibilibili API di costruzione e assemblaggio di 
+			un oggetto già pronto per essere consumato. C'è poi anche il vantaggio di avere 
+			API fluenti e funzionali, con builder che usano l'eredità e i Recursive generics per
+			essere più fruibili e manutenibili, si sono modi per rendereil Builder a Step e Faceted
+			oltre che Funzionali. Il Builder per portarlo ad un concetto semplice è come quando
+			ho un oggetto che lavora su molti argomenti per essere usato ma non voglio dare a chi
+			consuma l'api quindi l'oggetto l'onere di dover imparare tutti gli argomenti dei
+			costruttori e i valori più tecnici da inserire, ma consegno al consumatore dell'oggetto
+			l'istanza già pronta per ogni scopo che ci siamo prefissati, più metodi di builder si
+			ottegno oggetti istanziati pronti per quello scopo.
+
+	Factories
+
+		Quando Utilizzare questo Pattern e scopi.:
+
+			Partendo sempre come per il Builder che il Factory a differenza della normale funzionalità
+			di usare i costruttori per istanziare l'oggetto, non sempre un oggetto per essere al 
+			consumatore disponibile per poi essere lavorato inizializzato settato di proprietà etc, 
+			quindi il Factory fà questo rende al consumatore un oggetto finale partendo da uno o più
+			oggetti istanziati secondo un determinato ordine e impostati secondo una determinata logica
+			che non viene proposta all'esterno per facilitare il consumatore di api.
+			Il Facotry poi aiuta anche a creare istanze di oggeti in modo asincrono che nel modo normale
+			non potremmo fare, Tenere traccia degli oggetti istanziati e anche sostiurili tramite
+			referenze al volo nell'insieme delle istanze che rilascia.
+			E' come dire ti consegno una o più macchine ma per dartela monto il motore all'interno della carrozzeria,
+			assemblo tutto e te la rendo chiavi in mano. Quindi più oggetti istanziati per l'assemblaggio
+			e ti consegno lAPI di un oggetto orchestatore che fa funzionare il tutto.
+
+
+	Prototype
+
+		Quando Utilizzare questo Pattern e scopi.:
+			
+			Fondamentalmente prototipare è come definire un contesto di un oggetto per sommi capi
+			per poi essere copiato ( molto spesso questo per intendersi usa il Deep Copy più profonodo )
+			di un oggetto di base per poi essere modellato con più definizioni.
+			Accade ad esempio che oggetti complicati come automobili, iphone ad esempio non sono
+			progettati da zero. In una nornmale Fabbirca ogni nuovo modello non viene mai iniziato da 0, 
+			ma fondamentalmente lo migliorano in qualche modo progetti già esistenti, in sostantza usano 
+			i progetti esistenti e li perfezionano per il prodotto finale. Quindi l'approccio della Prototipazione
+			in questo caso non si discosta da questa idea di base nell'ingegneria del sotftwware.
+			Quindi vediamo un oggetto già esistente che viene preso come prototipo e viene in parte o
+			completamente costruito.
+			Potrebbe ad esempio usare il builder per inizializzarlo, e poi semplicemente attuare delle
+			variazioni su quello ottenuto. Per fare questo è necessario fare una copia del prototipo e 
+			personalizzarla, questa copia è chiamata clonazione, ma più precisamente una deep copy cioè
+			una copia dell'intero grafo dell'oggetto copiando per intero tutto lo stato dei riferimenti
+			e otteneere quindi un istanza che non influenzi i riferimenti da quello originale di cui si
+			è ottenuto all'inizio. Quindi possiamo usare una Facotry per rendere disponibile quesgta clonazione.
+			In parole povere un prototipo è semplicemente un oggetto parzialmente o completamente 
+			inizializzato da cui farne una copia ed usarlo per il Consumer di API a suo vantaggio.
+
+	
+	Singleton
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Esiste un concetto da anni discusso alla base di questo pattern, dove qualsiasi
+			design utilizziamo alla base non abbandoniamo mai l'idea di usare il singleton come
+			citazione, ciò vuol dire che il suo uso è sempre un utilizzo speciale per via della
+			favorevole proatica che ci permette di creare istanze univoche a livello di sistema
+			per componenti e oggetti che non devono per forza di cose essere istanziate più volte.
+			Ne possiamo citare molti per l'uso appropriato all'approccio tramite istanze univoche del
+			singleton come accessi al database che non ci serve avere più accessi ma utilizzare sempre
+			e solo la stessa connessione sottostante, o un thread in memoria che non deve essere istanziato
+			più volte e ci serve sempre e solo il suo riferimento, o gli stessi pattern Factory e Builder
+			che utilizziamo in modo costante da un singolo punto di accesso per farci restituire oggetti.
+			Nei Thread dove la lazy instanciation è dobbligo per non incorrere in condizioni Thread safety.
+			Ma ci sono anche altre possibilità di utilizzare questo approccio che molto spesso troviamo
+			in progetti di ampio volume.

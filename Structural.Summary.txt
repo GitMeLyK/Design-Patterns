@@ -1,0 +1,220 @@
+
+
+Structural Patterns
+
+	Concerned with structure (e.g. class members)
+	Many patterns are wrappers that mimic the underlying class interface
+	Stress the importance of Good API design
+
+
+	Adapter
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Semplicemente è un strutto che può essere una classe o un interfaccia
+			che si adatta alla tipologia dialtri componenti con specifiche di funzionalità
+			diverse, e in questo modo possiamo astrarre e concretizzre elementi software
+			indipendenti e riutilizzabili in più contesti senza preoccuparci di reimplementare
+			per ogni diversità aspetti diversi.
+			Facciamo l'esempio di una presa universale che si adatta in base alla rete elettrica
+			del paese dove viene inserita, e come qalcuno la ricorda ha pià innesti in base
+			a dove ci troviamo, e più inserti in base al dispositivo che la usa. Quindi possiamo
+			dire che in un contesto software c'è questo componente di mezzo che prende in ingresso
+			un determinato tipo di interfaccia e lo riadatta al tipo di interfaccia esterna che
+			deve riutilizzare.
+			Per usare un adapter fondamentalmente dobbiamo prendere in considerazione le API che
+			stai ricevendo da qualche parte e riadattarle per fornire un nuovo componente che in
+			realtà aggrega le attività in modo da avere un riferimento a ciò che viene adattato o
+			addirittura istanziato. Intermediando in questo modo per generare interfacce adattate.
+			In particolare nell'esempio della cache è da prestare attenzione per ottimizzare tenendo
+			conto e assicurandoci che l'adattatore non generi troppi dati e si occupi troppo la memoria.
+			Questo è un esempio ma ci sono altri scopi in cui l'adapter serve e le modalità nel
+			costruire il pattern possono divenatare più o meno complessi, come nellesempio dei
+			vettori che fanno uso di una factory interna che ne istanzia tramite Gerecis ricorsive
+			il giusto vettore all'uscita, o usando le DI per utilizzare i costrutti implementativi
+			del container per il resolver finale, che usa il particolare metodo RegisterAdapter di
+			una classe che usa internamente istanze adattate di altri componenti e come nel container
+			è possibile in fase di registrazione definire il comportamento di attributi che si 
+			comporteranno da metadata per le istanze di oggetti adattatori.
+
+	Bridge
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			un particolare tipo di connettore sopra l'astrazione, che a differenza di un pattern
+			di adapter che ne definisce ulteriori metodi e ridefinizioni di comportamento per la
+			destinazione, in questo caso parliamo di un astrazione dell'interfaccia o una classe
+			astratta che si ricorda quello che deve fare e dove farlo. Uno dei casi è che evita
+			la complessità cartesiana di un prodotto. Ad esempio supponiamo di avere una grossa
+			classe che gestisce un thread uno scheduler per esempio, e vuoi renderelo preeemptive
+			o cooperative o ancora farlo girare su windows che su unix nella combinazione ti ritroveresti
+			a dover implementare una cosa come in quesyto case del thread ThreadCooperativeUnix e ThreadCooperativeWindows
+			e ancora ThreadPreemptiveWindows e ThreadPreemptinveUnix. Quindi in modo cartesiano
+			abbiamo due sistemi operativi per due tipi di thread e in modo cartesiano avremo 4
+			componenti che dovranno connettersi tramite un unico punto a nostro favore appunto il Bridge.
+			Se aumenti di un altro elemento otterrai 8 classi etc.
+			Quindi questo ponte fà esattamente questo, evita di aumentare con l'aumentare dei
+			tipi diversi da connettere tra di loro evitando di usare l'ereditarietà e utilizzando
+			una sorta di platformshare tramite aggregazione. Il Bridge è in altri termini un modo
+			per disaccopiare un interfaccia gerarchica da un implementazione gerarchica.
+
+	Composite
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			In questo modo si ha la possibilità di trattare individualmente gli oggetti 
+			aggregati in modo uniforme. Per lo specifico sappiamo che trattare con gli oggetti
+			in genere si usano altri campi di oggetti e proprietà attraverso l'ereditarietà
+			che usa i membri a sua volta oggetti compositi che sono costituiti da ulteriori
+			diversi oggetti e così via.
+			Ad esempio per usare una composizione per creare un'espressione matematica composta
+			da espressioni semplici come i letterali di moltiplicazione etc, o in un altro esempio
+			potresti ritrovarti a fare un applicazione da disegno e potresti avere una forma
+			disegnata sullo schermo e disporre di un raggruppamento di forme in modo da selezionare
+			le forme per andare avanti e quindi avremmo quel gruppo di forme scelte insieme ed 
+			eseguire un azione di trascinamento. 
+			Quindi in sostanza il Composito tratta il modello di progettazione consentendoci di
+			trattare sia oggetti singoli che gruppi di oggetti scalari tutti allo stesso modo. 
+			Per rendere l'idea più chiara immagina di avere un oggetto food ma hai anche una
+			collection Collection<Foo> o qualcosa che erediti da una raccola di Food e che 
+			questi abbiano determinate API in comune dove puoi intervenire richiamandoli una
+			sull'altra senza sapere che tu stia lavorando su una singolo elemento o su un intera
+			collection di elementi anche simili. Quindi possiamo dire che il trattamento di oggetti
+			individuali o collection (scalari) siano trattai allo stesso modo uniforme.
+
+	Decorator
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Semplicemente è uno metodo per aggiungere comportamenti a metodi e funzioni
+			senza alterre il codice della classe.
+			Nello specifico possono essere aggiunti come speciali decoratori di metodi 
+			che processano prima della chiamata alla funzione che viene decorata e alla
+			fine processano altre informazioni dopo averla eseguita. Come si è accennato
+			prima tenendo presente che è sempre una cattiva idea alterare o modificare il
+			codice già esistente e testato, questo può diventare una buona alternativa se
+			ci sono casi dove aggiungere delle cose da fare prima ancora che venga eseguito
+			quel codice e dopo averlo eseguito. Il motivo quindi per cui si dovrebbero 
+			usare sono nell'aumentare le funzionalità di un oggetto senza scrivere altro 
+			codice nella classe già testata e inoltre vogliamo tenere separate le funzionalità.
+			Quindi dobbiamo essere in grado di interagire con le strutture esistenti 
+			in modo che il nostro oggetto decorato debba avere determinati tratti dell'oggetto
+			originale. Ci sono due opzioni da tenere in considerazione a questo punto, la
+			prima se la classe è sealed è provare ad ereditare da un oggetto richiesto, per
+			esempio provando a usare lo StringBuilder che è un oggetto già sigillato e non
+			potendo ereditare su di esso e si finisce con l'aggregare e replicare funzionalità
+			già esistenti o Usare appunto il Decorator che fa semplicemente riferimento all'oggetto
+			decorato e fornisce funzionalità aggiuntive al comportamento di questo tipi di 
+			oggetti che appunto non avendo ereditarietà ti costringe come nell'opzione citata
+			precedentemente a riscrivere API comportamentali duplicate.
+			Per concludere quindi il Decorator facilita l'aggiunta di comportamenti senza
+			per forza ereditare da qualcosa.
+			Il pattern Decorator fondamentalmente si occupa di mantenere internamente un riferimento
+			all'oggetto di cui fare il wrap o gli oggetti (tipo multiereditarietà) anche aggregandoli, fatto questo
+			si occupa di replicare le api di questi oggetti e usarle con modifiche appropriate
+			per implementare nuove funzionalità e metodi agli stessi. Fondamentale è ricordarci di
+			non usare un Decorator che imlementa quell'oggetto originale e usarlo nuovamente al di
+			sopra di quell'oggetto, perchè non stiamo ereditando da esso ma incapsulando e operando
+			su di esso/i. In C# esiste anche una variazione statica dove non si usano stratificazioni
+			ma non di modelli su modelli come in c++ in quanto non è ammesso in perchè non possiamo ereditare
+			dai tipi di parametro. 
+
+	Facade
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Esporre componenti attraverso una singola interfaccia, per fare un esempio di una casa
+			che è un sistema complesso deve anche gestire la presentazione che l'usabilità. Ciò si
+			traduce che quando si sta per acquistare una casa sto essensialmente acquistando il modo
+			in cui la casa sembra così come è utilizzabile per i miei gusti. Non vado nei dettagli
+			dell'implementazione di questa casa andando a vedere sezioni travi condutture etc, ma
+			i suoi sottosistemi come per esempio se ha l'elettricità ha le funzionalità idrauliche
+			e igieniche come anche puoi avere complessi di strutture interne come ad esempio il pavimento
+			come è costruito, ma in realtà per via della complessità in quanto fattore di un idea
+			oggetto casa che è formata da multistrati di cose non si vuole preoccuparsi di questo e
+			quindi il tutto all'utente finale è nascosto senza per forza aprire tutta la scatola.
+			Quello che acquisti di una casa è la posizione i comfort etc. senza preoccuparti di ogni
+			singolo dettaglio. Questo in software si traduce che gli utenti delle API vogliono 
+			qualcosa di semplice su cui lavorare senza coinvolgerli il più possibile nei dettagli
+			implementativi dove per alcuni aspetti vengono costruiti artefatti di meccanismi in grado
+			di effettuare operazioni complicate con un metodo implementativo semplice da scrivere.
+			Quindi quello che dai al consumatore di API è un paio di chiamate di funzione semplici
+			per far funzionare il tutto. Se per esempio prendiamo l'oggetto console che all'interno
+			è un complicato modo di gestire output buffer etc, posso fare in modo che luso delloggetto
+			console sia in una sola linea di codice ed esporre cosi un API semplice per un mondo
+			complicato esposto da un interfaccia pubblica che espone i metodi cardini ed essenziali.
+			Quindi la facciata dell'interfaccia rende intuitivo e logico il fattore di interazione
+			per l'implmentazione delle API ovviando e ottimizzando i sottosistemi interni ad essere
+			usati per quello scopo e metodo di interfaccia nascosto all'utilizzatore, per meglio dire
+			stati e comportamenti interni dei sossositemi che compongono il programma sono avvisi
+			ed auto impostazioni che l'utente all'esterno e cioè in facciata non vede se non nel 
+			solo risultato che lui si aspetta.
+
+	Flyweight
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Spazio di ottimizzazione o meglio realizzare un singolo obiettivo ottimizzando 
+			gli spazi che in software si traducono in ottimizzazioni di memoria e cicli cpu.
+			Quindi evitare ridondanze durante la memorizzazione, ottimizzare le chiamate ripetive
+			alla stessa risorsa come nell'esempio di una raccolta di un db non ha senso memorizzare
+			sempre il nome e cognome in una ipotetica tabella di log, ma si può salvare solo un campo
+			di riferimento a quel nominativo, in un file system usare metodi di compressione per lo
+			store di file ma cercando di trovare un buon compromesso con il metodo di compressione che
+			a sua volta occupa risorse cpu. Lo steso framework di dotnet internamente usa anche lui
+			metodi di ottimizzazione come nel caso di stringhe dove usa lo StringInternal per ovviare
+			al salvataggio di stringhe sempre uguli che si susseguono in un codice di programmazione
+			partendo dal fatto che tutte le stringhe sono immutabili e quindi se nel codice per esempio
+			usiamo la console.write("hello world") in motle posizioni il framework ottimizza in memoria
+			la stringa definendola una sola volta e ogni volta successiva usa il riferimento univoco creato
+			in compilazione per riprendere quella stringa memorizzata.
+
+	Proxy
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Un interfaccia per accedere a particolari risorse replicandola.  Facciamo per esempio che
+			un determinato oggetto venga chiamato in questo modo foo.Bar() quindi presupponiamo che
+			l'azione di andare al bar per l'oggetto sia disponibile come API in un ambiente come ad
+			esempio un bar in ZonaPaeseVia1 e poi ti ritrovi la stessa azione a doverla replicare
+			per uno stesso tipo bar ma in una ZonaPaeseVia2 , allora prxy la chiamata e riporti lazione
+			anche per quella zona. Questo concetto è un pò astruso ma pensiamo che il framework di rete
+			ti permette di fare questo tramite marshal con oggetti ref. Il che si traduce che possiamo
+			evitare di scrivere codice cambiandolo solo perchè si sta puntando a un ambiente o zona diversa.
+			L'idea che comunque sta alla base è molto semplice, hai un oggeto che è un oggetto proxy
+			che ha esattamente la stessa interfaccia con cui sei stato abituato e lavorato nel tempo, ma
+			finisce con comportarmenti diversi nell'esecuzione in ambienti diversi.
+			Questo si chiama tipicamente proxy di comunicazione quindi qualcosa che restituisce un modello
+			di esecuzione diverso da dove le invocazioni avvengono come ad esempio un ambiente in locale.
+			Ci sono ad esempio proxy di registrazione in cui ogni chiamata oltre a chiamre l'oggetto
+			sottostante ne esegue anche la registrazione. Si possono avere proxy virtuali o proxy di guardia
+			dove cè qualcosa per ottenere il controllo su un oggetto per esempio un controllo di accessi
+			indipendemente se chiami un metodo apposito e poi fai la chiamata, il proxy si interpone in 
+			mezzo e farà la chiamata a prescindere al tuo posto. Quindi possiamo in definitiva prendere 
+			l'assunto che è una classe di funzioni che si interfacciano a una particolare risorsa, questa
+			risorsa può anche essere remota o potrebbe essere un ambiente di svilupo diverso o in definitiva
+			destinazioni che operano diveramente da un ambiente originale o da una postazione locale.
+			Questo poi potrebbe fornire funzionalità aggiuntive sull'oggetto. Ad esempio potresti avere un
+			proxy di protezione su tutti gli oggetti e disporre di regole di autenticazione in modo da
+			specificare politiche di sicurezza personalizzate in cui alcuni utilizzatori possono solo usare
+			un set di api rispetto all'intero quadro disponibile.
+			Proxy Vs Decorator, Il proxy assomiglia molto ad un modello decorator ma le differenze sostanzialmente
+			sono le seguenti: Il proxy fornisce un interfaccia identica all'oggetto che sta trasmettendo mentre
+			il decorator lavora intorno all'oggetto per replicare alcune delle sue API o cnahe tutte ma anche
+			è fondamentale pensare al decorator come un wrapper che può anche aggiungere nuove funzionalità e
+			proprietà. Un altro motivo è che il decorator aggrega o ha un riferimento a ciò che sta decorando e
+			quindi presnde sempre in pancia nel costruttore l'oggetto su cui operare o decorare nche dinamicamente.
+			Il proxy non deve farlo e in realtà il proxy non ha nemmeno bisogno di lavorare con un istanza 
+			dell'oggetto di cui replicare i metodi, ad esempio si potrebbe avere un proxy che fornisce un interfaccia
+			su un oggetto che non è stato costruito e che per definizione è come se fosse un Lazy object che
+			verrà istanziato solo alla prima chiamata. Possiamo quindi dire che un proxy è una sorta di implementazione
+			lazy sull'intero tipo. Quindi un Proxy è un oggetto che usa la stessa interfaccia dell'oggetto 
+			sottostante trattato per creare la tua classe. Per creare quest proxy semplicemente si replica una
+			interfaccia esistente di un oggetto e aggiunge funzionalità rilevanti alla funzione membro ridefinita.
+			Quindi per cui invece di inoltrare ogni singola invocazione come fa il decoratore per i membri decorati
+			usiamo per la classe proxy solo i membri che necessitano di essere ridefiniti come comportamento.
+			Differenti proxy (communication, logging, caching, authentication etc) hanno ridefinizioni complete 
+			di comportamento adattati allo scopo per cui servono.
+
+
+
