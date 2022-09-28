@@ -1,0 +1,344 @@
+
+SOLID è un acronimo mnemonico che comprende 5 principi di progettazione che sono i seguenti:
+
+		Principio della responsabilità unica
+		Principio aperto/chiuso
+		Principio di sostituzione di Liskov
+		Principio di segregazione dell'interfaccia
+		Principio di inversione delle dipendenze
+
+
+	Necessità di principi di progettazione
+
+			Lo sviluppo del software non riguarda solo la costruzione di grandi 
+			soluzioni non fraintendermi qui, sì, è necessario costruire un'ottima soluzione e anche 
+			renderla manutenibile con codice facile da capire. Nel corso del tempo nuovi 
+			requisiti / funzionalità vengono aggiunti ai prodotti esistenti o è necessario correggere 
+			i bug nel prodotto esistente per i quali è necessario modificare il codice. 
+			La progettazione della soluzione deve essere tale da facilitare la modifica o l'estensione 
+			del codice esistente.
+
+			Alcuni difetti di progettazione rendono l'implementazione di queste nuove funzionalità 
+			un compito molto grande in termini di sforzo e complessità. 
+			Anche se la nuova funzionalità potrebbe essere piccola, ma le modifiche al codice 
+			influenzate potrebbero essere enormi a causa delle modifiche di progettazione. 
+			Ora non possiamo incolpare i nuovi requisiti poiché la manutenzione del prodotto fa 
+			parte del ciclo di vita dello sviluppo del software e le modifiche si verificheranno 
+			nel tempo.
+
+			I principi di progettazione consentono di implementare il codice in modo tale da poter 
+			realizzare un progetto con considerazioni per la flessibilità, l'estendibilità, la 
+			leggibilità e la manutenibilità. 
+			Con la conoscenza e l'uso appropriato dei principi di progettazione, gli sviluppatori 
+			possono ottenere indicazioni sulla scrittura di codice ad accoppiamento debole, 
+			testabile e manutenibile.
+
+			Una volta appresi questi principi, sarai tentato di applicarli ovunque nel tuo codice, 
+			ma fai attenzione che questi principi non si adattano a tutte le situazioni. 
+			A volte applicando il principio si sovra-ingegnerizza il pezzo di codice e si 
+			aggiunge una complessità inutile.
+
+			I principi SOLID sono elementi costitutivi per un codice migliore e affidabile 
+			di cui ogni sviluppatore dovrebbe essere a conoscenza.
+
+	Introduzione ai principi solidi
+
+			I principi solidi sono principi di progettazione molto popolari nel mondo della
+			programmazione orientata agli oggetti e gli sviluppatori cercano di utilizzare questi 
+			principi nel loro codice con l'intenzione di aggiungere flessibilità e manutenibilità 
+			al codice, cioè di scrivere software migliore. 
+			Questi principi sono un sottoinsieme di molti principi promossi dall'ingegnere del 
+			software e istruttore americano Robert C. Martin.
+
+			Anche se ora questi principi hanno diversi anni, ma sono ancora molto importanti 
+			per lo sviluppo di software flessibile, affidabile e robusto.
+
+-------------------------------------------------------------------------------------------------------
+
+Principio della responsabilità unica
+
+		Questo è il primo principio dei Principi Solidi che è definito come segue.
+		Ogni modulo software o classe dovrebbe avere un solo e solo motivo per cambiare
+		Se è presente una modifica nel requisito di registrazione, una classe che implementa 
+		la funzionalità di registrazione può subire una modifica, ma la stessa classe non 
+		deve mai subire una modifica per la modifica di qualsiasi altra funzionalità diversa 
+		dalla registrazione.
+		Quando iniziamo a scrivere codice aggiungiamo classi per raggiungere l'attività a portata 
+		di mano. 
+		Il principio della responsabilità unica dice che mentre le classi di costruzione 
+		assicurano che una classe abbia una singola responsabilità, cioè che svolga un singolo compito. 
+		Una classe non dovrebbe eseguire più compiti, cioè non dovrebbe avere più di una responsabilità.
+		Se si aggiunge più di una responsabilità o attività in una singola classe, si finisce 
+		con funzionalità strettamente accoppiate che non avrebbero dovuto essere insieme in quanto 
+		ciò renderà il codice meno gestibile e aggiungerà ulteriore complessità durante la modifica 
+		di una particolare funzionalità in quella classe.
+		Ora, questo non significa che le righe di codice in una classe siano controllate, 
+		invece una classe può avere molti membri e metodi di dati fino a quando e a meno che non siano
+		tutti correlati alla stessa singola responsabilità. 
+		Ma alla fine, finirai con classi più piccole se limitiamo una singola funzionalità a una 
+		classe.
+		L'approccio che è necessario adottare si basa sui requisiti, identificare le classi e le 
+		relative responsabilità e aggiungere codice a una classe in base alle funzionalità che 
+		verranno implementate da tale classe.
+
+		Benefici
+			* Le classi con responsabilità singola sono più facili da progettare e implementare
+			* Promuove la separazione dei problemi limitando la singola funzionalità a una classe
+			* Migliora la leggibilità in quanto si tratta di una singola classe per funzionalità 
+			  che è molto più facile da spiegare e capire.
+			* La manutenibilità del codice è migliore in quanto una modifica in una funzionalità 
+			  non influisce su altre funzionalità.
+		    * Migliora la testabilità in quanto, grazie alla singola funzionalità di una classe, 
+			  riduce la complessità durante la scrittura di unit test case per una classe
+			* Inoltre, isolare ogni funzionalità in classi diverse aiuta a limitare le modifiche 
+			  solo in quella classe, il che alla fine aiuta a ridurre il numero di bug dovuti a 
+			  modifiche per nuovi requisiti.
+			* È più facile eseguire anche il debug degli errori, ad esempio se c'è un errore 
+			  nella funzionalità di posta elettronica, allora sai quale classe cercare.
+			* Permette anche di riutilizzare lo stesso codice in altri luoghi, ad esempio se 
+			  si costruisce una classe di funzionalità e-mail può essere utilizzato per la 
+			  registrazione dell'utente, OTP su e-mail, password dimenticate, ecc.
+
+		Il principio di responsabilità unica è uno dei principi di progettazione più popolari e 
+		comunemente utilizzati per raggiungere obiettivi orientati agli oggetti. 
+		Utilizzando il principio della responsabilità singola possiamo ridurre la dipendenza 
+		tra le funzionalità e quindi possiamo gestire meglio il nostro codice per l'implementazione 
+		di nuove funzionalità a lungo termine.
+		A volte in base alla situazione puoi decidere di non farlo e non dovresti anche finire 
+		con troppe classi con un solo metodo in ogni classe. 
+		In base alle funzionalità implementate, decidi cosa può andare insieme e cosa no.
+
+		Note
+			Dovresti essere in grado di vedere l'implementazione del principio di responsabilità 
+			singola nelle librerie di .NET Framework in cui le funzionalità sono segregate in base 
+			allo spazio dei nomi e alle classi. 
+			Esistono classi separate per diverse funzionalità anche nelle librerie .NET Core.
+
+-------------------------------------------------------------------------------------------------------
+
+Principio aperto/chiuso
+
+	Questo è il secondo principio dei Principi Solidi che è definito come segue
+	""Una classe software o un modulo deve essere aperto per l'estensione ma chiuso per la modifica""
+	Se abbiamo scritto una classe, allora dovrebbe essere abbastanza flessibile da non doverla 
+	cambiare (chiusa per la modifica) fino a quando non ci sono bug, ma una nuova funzionalità 
+	può essere aggiunta (aperta per estensione) aggiungendo nuovo codice senza modificare 
+	il suo codice esistente.
+
+	Questo principio dice che dovrebbe essere possibile estendere la funzionalità nelle classi 
+	senza modificare il codice esistente nelle classi. Vale a dire che dovrebbe essere possibile 
+	estendere il comportamento del software senza modificarne l'implementazione principale esistente.
+	Fondamentalmente afferma che progettare le classi/codice in modo tale che per aggiungere 
+	nuove funzionalità al software si aggiunge nuovo codice senza la necessità di modificare 
+	il codice esistente. 
+	Non modificare il codice esistente ha il vantaggio di non introdurre nuovi bug nel codice 
+	già funzionante.
+	Per estensione open for significa che è necessario progettare le implementazioni di codice 
+	in modo tale da poter utilizzare l'ereditarietà per implementare nuove funzionalità 
+	nell'applicazione. 
+	La progettazione deve essere tale che, anziché modificare la classe esistente, è necessario 
+	aggiungere una nuova classe che deriva dalla classe base e aggiungere un nuovo codice a 
+	questa classe derivata.
+	Per l'ereditarietà, è necessario considerare l'ereditarietà dell'interfaccia anziché 
+	l'ereditarietà della classe. 
+	Se la classe derivata dipende dall'implementazione nella classe base, si sta creando una 
+	dipendenza che è un accoppiamento stretto tra la classe base e la classe derivata. 
+	Con l'interfaccia, è possibile fornire nuove funzionalità aggiungendo una nuova classe 
+	che implementa questa interfaccia senza modificare l'interfaccia e le altre classi esistenti. 
+	L'interfaccia consente inoltre l'accoppiamento libero tra le classi che implementano l'interfaccia.
+
+	Benefici
+
+		* L'ereditarietà attraverso l'interfaccia consente di ottenere un accoppiamento libero tra 
+		  le classi che implementano tale interfaccia.
+		* Per aggiungere una nuova funzionalità, non modifichiamo il codice esistente in modo da non 
+		  interrompere le funzionalità esistenti introducendo nuovi bug nel codice esistente.
+
+	Il principio aperto/chiuso è uno dei principi di progettazione più importanti in Solid Principles 
+	in quanto promuove l'ereditarietà dell'interfaccia che aiuta a raggiungere l'accoppiamento libero 
+	e aiuta anche a mantenere intatte le funzionalità esistenti.
+	A volte ci sarà la necessità di modificare il codice esistente per implementare nuove funzionalità,
+	ma progettare il codice in modo tale che per implementare nuove funzionalità le modifiche al codice
+	esistente siano pari a zero o minime.
+
+	Note.:
+
+		L'esempio veramente reale del principio Open/Closed in Solid Principles può essere visto 
+		nell'implementazione di framework di registrazione. 
+		Aggiungiamo un framework di registrazione all'applicazione e da molte destinazioni 
+		disponibili, selezioniamo la nostra destinazione per la registrazione come file o 
+		database o cloud.
+		Queste destinazioni (sink) sono codificate utilizzando l'ereditarietà dell'interfaccia 
+		tenendo presente il principio Open/Closed. 
+		Ci sono nuove destinazioni che vengono aggiunte nel tempo con il principio chiuso per la 
+		modifica ma aperto per l'estensione.
+		Inoltre, l'effettiva implementazione dell'applicazione è una funzionalità di caricamento 
+		della transazione (ordine, accesso utente o utente, ecc.) in cui si ottengono file 
+		in formato XML per l'elaborazione che devono essere analizzati e salvati in un database.
+
+-------------------------------------------------------------------------------------------------------
+
+Principio di sostituzione di Liskov
+
+	Questo è il terzo principio dei Principi Solidi che è definito come segue.
+	""Qualsiasi funzione o codice che utilizza puntatori o riferimenti alla classe base deve 
+	 essere in grado di utilizzare qualsiasi classe derivata da tale classe base senza alcuna 
+	 modifica""
+
+	Questo principio suggerisce che dovresti scrivere le tue classi derivate in modo tale che 
+	qualsiasi classe figlio (classe derivata) dovrebbe essere perfettamente sostituibile al 
+	posto della sua classe madre (classe base) senza cambiare il suo comportamento.
+	Questo principio dice che se si dispone di una funzione nella classe base che è presente 
+	anche nella classe derivata, allora la classe derivata dovrebbe implementare quella funzione 
+	con lo stesso comportamento, cioè dovrebbe dare lo stesso output per l'input dato. 
+	Se il comportamento nella classe derivata è lo stesso, il codice client che utilizza la 
+	funzione di classe base può utilizzare in modo sicuro la stessa funzione dalle classi derivate 
+	senza alcuna modifica.
+	Quindi qualsiasi funzione della classe base che viene sovrascritta dalla classe derivata 
+	dovrebbe avere la stessa firma, cioè dovrebbe accettare gli stessi valori di input e dovrebbe 
+	anche restituire lo stesso valore. 
+	La funzione nella classe derivata non deve implementare regole più rigorose in quanto causerà 
+	problemi se chiamata con un oggetto della classe base.
+	Questo principio si può dire che è in un certo senso un'estensione del principio Aperto/Chiuso 
+	che supporta l'ereditarietà e il Principio di Sostituzione di Liskov porta questa eredità un 
+	passo avanti affermando che le classi derivate possono estendere la classe base ma mantenere 
+	il comportamento lo stesso.
+	Questo principio si concentra maggiormente sul comportamento delle classi di base ed estese 
+	piuttosto che sulla struttura di queste classi.
+
+	Benefici
+
+		* Impedisce l'interruzione del codice se per errore qualcuno ha sostituito la classe base 
+		  con la classe derivata poiché il suo comportamento non cambia
+		* Le classi derivate possono facilmente generare eccezioni per il metodo che non sono 
+		  supportate da esse.
+
+	Questo principio in breve fornisce alcune indicazioni su come utilizzare l'ereditarietà nei 
+	linguaggi orientati agli oggetti che afferma che tutte le classi derivate dovrebbero comportarsi 
+	allo stesso modo della classe base. 
+	In pratica, trovo questo principio un po 'difficile da implementare, cioè richiede molti sforzi 
+	di pianificazione e progettazione del codice proprio all'inizio del progetto.
+	Inoltre, qualsiasi strumento non aiuterà a garantire questo principio, dovrai eseguire controlli 
+	manuali o revisioni del codice o test del codice per garantire che il codice non violi il 
+	principio di sostituzione di Liskov nei principi solidi.
+
+	Note.:
+
+		L'implementazione nel mondo reale per questo principio di sostituzione di Liskov la vedo 
+		in molti domini. Prendiamo l'esempio del dominio Assicurativo in cui emettiamo una polizza 
+		assicurativa per vita e non vita. 
+		Nel ramo non vita, abbiamo l'assicurazione auto e sotto questo motore, abbiamo varie 
+		categorie come l'assicurazione auto privata, l'assicurazione due ruote, l'assicurazione 
+		veicoli commerciali, ecc.
+		Progettare e implementare classi per questa assicurazione auto in 
+		conformità con il principio di sostituzione di Liskov nei principi solidi è facilmente
+		deducibile creando classi base che requisisconno appunto le proprietà di base e per ereditarietà
+		le classi figlie dette clasi concrete a quella base ne sostituisco i metodi e le proprietà
+		coinvolte in base al tipo.
+
+-------------------------------------------------------------------------------------------------------
+
+Principio di segregazione dell'interfaccia
+
+	Questo è il quarto principio dei Principi Solidi che è definito come segue.
+	""Il client non dovrebbe essere costretto a implementare un'interfaccia che non utilizzerà 
+	  mai o un'interfaccia che è irrilevante per esso.""
+
+	Questo principio afferma che il cliente non dovrebbe essere costretto a dipendere da metodi 
+	che non utilizzerà. 
+	Questo principio promuove l'implementazione di molte piccole interfacce invece di una grande 
+	interfaccia in quanto consentirà ai client di selezionare le interfacce richieste e implementare 
+	le stesse.
+	L'obiettivo di questo principio è quello di suddividere il software in piccole classi che non 
+	implementano l'interfaccia o metodi che non verranno utilizzati dalla classe. 
+	Questo aiuterà a mantenere la classe concentrata, snella e disaccoppiata dalle dipendenze.
+	Questo principio suggerisce di non implementare una grande interfaccia, invece ci dovrebbero 
+	essere molte piccole interfacce che possono essere scelte e scelte dalle classi che devono 
+	implementarle.
+	L'interfaccia implementata dalla classe dovrebbe essere strettamente correlata alla responsabilità
+	che sarà implementata dalla classe. 
+	Durante la progettazione delle interfacce dovremmo progettare secondo il principio di 
+	responsabilità unica in principi solidi.
+	Dovremmo cercare di mantenere le nostre interfacce piccole poiché le interfacce più grandi 
+	includeranno più metodi e tutti gli implementatori potrebbero non aver bisogno di così tanti 
+	metodi. 
+	Se manteniamo le interfacce di grandi dimensioni, finiremo con molte funzioni nella classe 
+	degli implementatori che potrebbero anche andare contro il principio di responsabilità unica.
+
+	Benefici
+
+		* Implementando interfacce più piccole siamo in grado di separare le responsabilità
+		* Implementando interfacce più piccole siamo in grado di distribuire le responsabilità 
+		  tra più interfacce e quindi ottenere l'astrazione.
+		* Le classi possono utilizzare interfacce pertinenti e quindi implementare le funzioni 
+		  richieste dalle classi. Quindi siamo in grado di mantenere la classe pulita tenendo fuori 
+		  il codice che non è di alcuna utilità per la classe.
+
+	Questo principio promuove l'uso di interfacce più piccole invece di un'unica grande interfaccia. 
+	Una grande interfaccia potrebbe essere conveniente dal punto di vista della codifica, ma potresti 
+	finire con più di una responsabilità in una singola interfaccia che è difficile da mantenere. 
+	Questo principio in Solid Principles consente di suddividere l'applicazione in componenti più 
+	piccoli, robusti e manutenibili.
+	
+	Note.:
+
+		L'esempio del mondo reale che posso vedere per questa segregazione dell'interfaccia è 
+		nella piattaforma di e-commerce dove c'è un'opzione di immissione dell'ordine con più 
+		opzioni per il pagamento dell'ordine. 
+		Invece di implementare una grande interfaccia per le opzioni di pagamento, possiamo 
+		suddividere l'interfaccia di pagamento in interfacce più piccole in base al tipo di pagamento.
+
+-------------------------------------------------------------------------------------------------------
+
+Principio di inversione delle dipendenze
+
+	Questo è il quinto principio dei Principi Solidi che è definito come segue.
+	""Le classi di alto livello non dovrebbero dipendere da classi di basso livello, ma entrambe 
+	  dovrebbero dipendere dall'astrazione.""
+	""L'astrazione non dovrebbe dipendere dai dettagli, infatti i dettagli dovrebbero dipendere 
+	  dall'astrazione""
+
+	Questo principio suggerisce che ci dovrebbe essere un accoppiamento libero tra classi di alto 
+	livello e di basso livello e per raggiungere questo obiettivo i componenti di accoppiamento 
+	sciolti dovrebbero dipendere dall'astrazione. 
+	In termini semplici, dice che le classi dovrebbero dipendere da interfacce/classi astratte e 
+	non da tipi concreti.
+	Questo principio di inversione delle dipendenze (DI) nei principi solidi è anche noto come 
+	inversione del controllo (IoC). Questo principio è stato inizialmente chiamato IoC, 
+	ma Martin Fowler ha coniato il nome DI cioè Dependency Injection o Dependency Inversion.
+	Questo principio dice semplicemente che dovresti introdurre l'astrazione tra classi di alto 
+	livello e di basso livello che ci consente di disaccoppiare le classi di alto livello 
+	e di basso livello l'una dall'altra.
+	Se le classi dipendono l'una dall'altra, allora sono strettamente accoppiate l'una all'altra. 
+	Quando le classi sono strettamente accoppiate, il cambiamento in una classe qualsiasi innesca 
+	cambiamenti anche in tutte le altre classi dipendenti. 
+	Invece, le classi di basso livello dovrebbero implementare contratti utilizzando un'interfaccia 
+	o classi astratte e le classi di alto livello dovrebbero utilizzare questi contratti per 
+	accedere a tipi concreti.
+	Questo principio è correlato ad altri principi nei Principi Solidi, cioè se segui sia 
+	il Principio Aperto/Chiuso che il Principio di Sostituzione di Liskov nel tuo codice, 
+	allora seguirà indirettamente anche il Principio di Inversione di Dipendenza.
+
+	Benefici
+
+		* Le classi dipendono dall'astrazione e non dai tipi concreti
+		* Le classi di alto e basso livello sono liberamente accoppiate
+		* Finché non si modificano i contratti, la modifica in una classe non attiverà 
+		  una modifica in un'altra classe
+		* Poiché le classi dipendono dall'astrazione, il cambiamento in una classe non 
+		  interromperà un'altra classe
+
+	Questo è il quinto e ultimo principio in Solid Principles ma uno dei principi di progettazione 
+	importanti nella pratica di programmazione di oggi. 
+	Questo principio elimina la dipendenza tra le entità definendo il modo in cui due classi devono 
+	essere liberamente accoppiate utilizzando l'astrazione
+	Quando una classe sa troppo sui dettagli di un'altra classe, allora c'è il rischio che 
+	i cambiamenti in una possano rompere un'altra classe, quindi le classi di alto livello e 
+	di basso livello dovrebbero essere liberamente accoppiate il più possibile.
+
+	Note.:
+
+		L'esempio reale per l'inversione delle dipendenze è negli unit test automatizzati 
+		dell'applicazione utilizzando qualsiasi framework di test come NUnit, xUnit, ecc. 
+		Dove l'iniezione di dipendenze viene utilizzata per passare diverse 
+		dipendenze (stub e mock) alla classe per eseguire lo unit test del componente.
