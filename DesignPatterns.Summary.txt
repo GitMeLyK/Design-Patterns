@@ -1,0 +1,169 @@
+							Modelli di progettazione software
+
+	L'architettura del software può essere paragonata all'architettura di una casa. Così ha bisogno
+	lo sviluppo dell'applicazione nella pianificazione consiste anche nella progettazione e nella 
+	costruzione di una struttura significativa e stabile.
+
+	Durante l'implementazione, si tratta solo di definizione e soluzione del problema con gli 
+	strumenti forniti. Molti dei passaggi sono ripetitivi e seguono schemi di routine. 
+	L'esperienza dell'utente o dell'architetto gioca un ruolo importante qui.
+
+Cosa devo applicare quando e come?
+
+	Cosa sono i modelli di progettazione software?
+		Per molti processi, esistono già modelli molto ottimizzati e collaudati che possono essere 
+		riutilizzati. Attraverso questi cosiddetti modelli di progettazione, è quindi possibile 
+		accedere indirettamente all'esperienza degli altri. Il concetto risale all'architetto 
+		Christopher Alexander ed è stato successivamente utilizzato dagli informatici come base 
+		per la progettazione concettuale nell'architettura del software.
+
+	Questi pattern sono categorizzati in base alle loro caratteristiche nei cosiddetti 
+	Design Pattern Catalogs e raggruppati logicamente attorno a una certa chiarezza da creare. 
+	Queste caratteristiche possono essere, ad esempio, somiglianze di modelli tra di loro, 
+	l'applicabilità o le conseguenze. Molte pubblicazioni trattano questo argomento di classificazione. 
+	Le categorizzazioni mostrate nella legenda seguente possono quindi differire a seconda del punto 
+	di vista.
+
+								:: Legenda Categorizzata dei Design Patterns ::
+
+								* Creational Patterns
+								* Structural Patterns
+								* Behavioral Patterns
+								* Concurrency Patterns
+
+	Modelli di creazione (Creational Patterns)
+
+		I Modelli di progettazione creazionale si occupano della creazione di oggetti e classi. 
+		In che modo le creazioni di oggetti possono essere ereditate da altri oggetti e in che 
+		misura le classi possono essere istanziate dalle sottoclassi? 
+		Come vengono create e collegate queste istanze?
+
+		I modelli dovrebbero creare meccanismi di creazione di oggetti con cui le creazioni di 
+		oggetti sono controllate e quindi l'oggetto viene creato intenzionalmente sulla rispettiva 
+		situazione. Flessibilità e riutilizzabilità sono gli obiettivi previsti qui.
+		In tal modo la costruzione è separata dall'implementazione concreta.
+		Nella legenda seguente sono rappresentati alcuni modelli, che sono definiti come  
+		modelli di creazione.
+
+								* Abstract Factory
+								* Singleton
+								* Builder
+								* Factory Method
+								* Multiton
+								* Prototype
+
+	Modelli di progettazione strutturale ( Structural Patterns)
+
+		Come faccio a creare strutture grandi, coese, ma efficienti? 
+		Come posso ottimizzare correttamente l'interazione delle mie entità? 
+		I modelli di progettazione strutturale dovrebbero aiutare con queste domande e 
+		standardizzare la composizione di oggetti e classi. Quindi l'attenzione qui è 
+		sullo stabilire relazioni individuali.
+		
+		Spesso si tratta di ottimizzare e salvare i processi di ereditarietà. Ad esempio, 
+		gli oggetti possono essere racchiusi in una struttura ad albero, che quindi utilizza 
+		tutti la stessa interfaccia, oppure le proprietà generali possono essere spostate in 
+		un singolo oggetto, che viene quindi condiviso da tutti gli altri oggetti. 
+		È possibile costruire tubazioni e formare catene di processo.
+		Nella legenda seguente vengono illustrati alcuni dei modelli definiti come modelli di Struttura.
+
+
+								Pipes & Filter
+								* Composite
+								* Facade
+								* Proxy
+								* Flyweight
+								* Decorator
+								* Message Pattern --> intro to microservice
+								Private Class Data
+								Marker
+								Extensibility
+								* Adapter
+								Aggregate
+								* Bridge
+
+	Modelli comportamentali
+
+		Oltre all'assegnazione e all'allocazione efficienti delle entità, anche la comunicazione 
+		deve essere ottimizzata. A questo livello, i diversi trasferimenti tra loro descrivono 
+		anche un flusso strutturale di controllo. Questi modelli comportamentali possono essere 
+		molto complessi e difficili da afferrare, ma sono determinati da come i singoli oggetti 
+		sono collegati tra loro.
+
+		Ad esempio, l'ereditarietà tra classi viene utilizzata per distribuire il comportamento tra 
+		le classi. Questa ereditarietà è una sequenza di diversi algoritmi che recuperano le 
+		operazioni in ordine predefinito e vengono definiti, istanziati e implementati.
+		Inoltre, i comportamenti degli oggetti possono essere incapsulati invece di distribuirli 
+		tra le classi. Un altro approccio al modello comportamentale è un modello di osservatore 
+		in cui vengono osservate le dipendenze tra gli oggetti.
+
+		Quindi, come vengono distribuite le responsabilità? 
+		I modelli comportamentali hanno lo scopo di contribuire ad aumentare la flessibilità 
+		del software in termini di comportamento nell'esecuzione di questa comunicazione.
+		Nella legenda seguente vengono illustrati alcuni dei modelli definiti come modelli Comportamentali.
+
+
+								* Chain of Responsability
+								* Iterator
+								* Visitor
+								* Mediator
+								* Memento
+								* Null Object
+								* State
+								* Strategy
+								* Observer
+								Protocol Stack
+								Scheduled Task
+								Specification
+								Single-Serving Visitor
+								Blackboard
+								* Command
+								* Template Method
+								* Interpreter
+
+Modelli di concorrenza
+
+		Come anche i calcoli allo stesso tempo, così il parallelo può essere eseguito, 
+		quindi anche i modelli possono essere creati parallelamente.
+		Quindi intere istanze di programma possono essere incapsulate come processi ed 
+		eseguite isolate, oppure un programma può essere diviso in più thread, che accedono 
+		tutti alla stessa area di memoria, ma possono anche funzionare in parallelo.
+		Dove quale modello può essere utilizzato dipende da tutte le condizioni del carico di lavoro 
+		presenti e deve essere attentamente coordinato per evitare efficacemente i picchi di 
+		sovraccarico. 
+		Nella legenda seguente vengono illustrati alcuni dei modelli definiti come modelli Concurrency.
+
+								Binding Properties
+								*' Double-Checked Locking
+								*' Event-based Asyncronous
+								*' Guarded Supension
+								*' Join (Barrier Dining)
+								*' ** Messaging (MDP) --> intro to microservice concurrency
+ 								*' Lock (Read write lock/double checked)
+								*' Active Object
+								*' Monitor Object
+								Compute Kernel
+								Scheduler
+								Reactor 
+								Leader/Followers 
+								Balcking 
+								Thread-Pool
+								Thread-Local
+
+Conclusione
+
+	Poiché non tutte le soluzioni ai problemi devono essere sviluppate da soli, i modelli di 
+	progettazione applicati strategicamente possono far risparmiare tempo e risorse. 
+	Possono garantire che i programmi vengano eseguiti in modo efficace. 
+	Viene creata una certa standardizzazione. Questo è particolarmente importante per lo sviluppo 
+	cross-team. Un prodotto software viene così concepito e implementato in modo uniforme e coerente.
+
+	Tuttavia, questi modelli sono spesso criticati. Perché?
+	Un fattore decisivo è che i modelli di progettazione non devono essere visti come una soluzione 
+	per tutti gli usi. I singoli modelli devono essere compresi dallo sviluppatore per poterli 
+	utilizzare in modo efficiente. 
+	Il modello si adatta al mio problema al 100% o sto creando di nuovo lavoro extra?
+
+	I modelli di progettazione consentono di accedere all'esperienza degli altri, ma richiedono 
+	la propria esperienza nel lavorare con queste soluzioni.
+

@@ -216,5 +216,63 @@ Structural Patterns
 			Differenti proxy (communication, logging, caching, authentication etc) hanno ridefinizioni complete 
 			di comportamento adattati allo scopo per cui servono.
 
+	Message Pattern
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Un broker di messaggi (noto anche come broker di integrazione o motore di interfaccia) 
+			è un modulo di programma per computer intermedio che traduce un messaggio dal protocollo 
+			di messaggistica formale del mittente al protocollo di messaggistica formale del 
+			destinatario. I broker di messaggi sono elementi nelle reti di telecomunicazioni o 
+			di computer in cui le applicazioni software comunicano scambiando messaggi formalmente 
+			definiti. I broker di messaggi sono un elemento costitutivo del middleware orientato ai 
+			messaggi (MOM), ma in genere non sostituiscono il middleware tradizionale come MOM e RPC.
+			Un broker di messaggi è un modello architetturale per la convalida, la trasformazione e il 
+			routing dei messaggi. Media la comunicazione tra le applicazioni, riducendo al minimo la 
+			consapevolezza reciproca che le applicazioni dovrebbero avere l'una dell'altra per poter 
+			scambiare messaggi, implementando efficacemente il disaccoppiamento.
+			Lo scopo principale di un broker è quello di prendere i messaggi in arrivo dalle 
+			applicazioni ed eseguire alcune azioni su di essi. I broker di messaggi possono 
+			disaccoppiare gli endpoint, soddisfare specifici requisiti non funzionali e facilitare 
+			il riutilizzo delle funzioni intermedie. Ad esempio, un broker di messaggi può essere 
+			utilizzato per gestire una coda di carichi di lavoro o una coda di messaggi per più 
+			destinatari, fornendo spazio di archiviazione affidabile, recapito dei messaggi garantito 
+			e forse gestione delle transazioni.
+			I seguenti rappresentano altri esempi di azioni che potrebbero essere gestite dal broker:
+				Instradare i messaggi a una o più destinazioni
+				Trasformare i messaggi in una rappresentazione alternativa
+				Eseguire l'aggregazione dei messaggi, scomponendo i messaggi in più messaggi e 
+				 inviandoli alla loro destinazione, quindi ricomponendo le risposte in un unico 
+				 messaggio per tornare all'utente
+				Interagire con un repository esterno per aumentare un messaggio o archiviarlo
+				Richiamare i servizi Web per recuperare i dati
+				Rispondere a eventi o errori
+				Fornire contenuto e routing dei messaggi basato su argomenti utilizzando il 
+				modello di pubblicazione-sottoscrizione
+			I broker di messaggi si basano generalmente su una delle due architetture fondamentali: 
+					hub-and-spoke e bus di messaggi. 
+					Nel primo, un server centrale funge da meccanismo che fornisce servizi di 
+					integrazione, mentre con il secondo, il broker di messaggi è una dorsale 
+					di comunicazione o un servizio distribuito che agisce sul bus. 
+			Inoltre, è possibile utilizzare un approccio multi-hub più scalabile per integrare 
+			più broker.
+			** Si noti che il modello di broker di messaggi descritto in questo esempio in allegato
+			è per la soluzione all'interno del contesto del processo e non descrive 
+			l'intermediazione/routing dei messaggi tra i sistemi distribuiti. 
+			Per tale scalabilità di sistemi, abbiamo già broker di messaggi aziendali, come Kafka, 
+			coda del bus di servizio di Azure e così via.
+			** Nell'esempio principalmente per il Message Pattern viene introdotto il Message Broker
+			che è fulcro di uno dei modelli di progettazione per un sistema enterprise di infrastruttura
+			nella rete orientata ai microservizi e alla loro comunicazione sincrona e asincrona.
+			In questo esempio introduciamo appunto questo modello di progettazione enterprise è come
+			è comunque collegato a questi modelli di sviluppo. Tra l'altro l'ecosistema dei microservizi
+			che è composto da svariati pattern di svilupo per componenti di rete come il pattern API gateway che
+			fa da reverse proxy per la comunicazione client microservizi o il pattern API aggregator per 
+			che serve a convogliare più microservizi insieme in un punto gateway appunto o il Pattern Proxy Gateway
+			etc. sono fondamentalmente pattern di infrastrtuttura a livello enterprise ma che come modello
+			di progettazione software interna si rifanno a questi pattern elementari in questo studio, e che
+			formulano il contesto per le componentistiche enterprise dei microservizi e la loro comunicaizione.
+
+
 
 

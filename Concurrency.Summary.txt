@@ -1,0 +1,183 @@
+
+
+Concurrency Patterns
+
+	Premesessa (Concurrency e Parallel)
+
+		Il concetto di calcolo concorrente è spesso confuso con il concetto correlato ma distinto 
+		di calcolo parallelo, sebbene entrambi possano essere descritti come "processi multipli 
+		in esecuzione durante lo stesso periodo di tempo". Nel calcolo parallelo, l'esecuzione 
+		avviene nello stesso istante fisico: ad esempio, su processori separati di una macchina 
+		multiprocessore, con l'obiettivo di accelerare i calcoli: il calcolo parallelo è 
+		impossibile su un singolo processore (one-core), poiché solo un calcolo può verificarsi 
+		in qualsiasi istante (durante ogni singolo ciclo di clock). 
+		Al contrario, il calcolo concorrente consiste in vite di processo che si sovrappongono, 
+		ma l'esecuzione non deve avvenire nello stesso istante. L'obiettivo qui è quello di 
+		modellare i processi nel mondo esterno che si verificano contemporaneamente, come più 
+		client che accedono a un server contemporaneamente. 
+		Strutturare i sistemi software come composti da più parti comunicanti simultanee può 
+		essere utile per affrontare la complessità, indipendentemente dal fatto che le parti 
+		possano essere eseguite in parallelo. 
+
+		Ad esempio, i processi concorrenti possono essere eseguiti su un core interlasciando le 
+		fasi di esecuzione di ciascun processo tramite sezioni di condivisione del tempo: 
+		solo un processo viene eseguito alla volta e, se non viene completato durante la 
+		sezione temporale, viene messo in pausa, un altro processo inizia o riprende e quindi 
+		successivamente il processo originale viene ripreso. 
+		In questo modo, più processi sono parzialmente attraverso l'esecuzione in un singolo 
+		istante, ma solo un processo viene eseguito in quell'istante.
+
+		I calcoli concorrenti possono essere eseguiti in parallelo, ad esempio, assegnando ogni 
+		processo a un processore o a un core del processore separato o distribuendo un calcolo 
+		su una rete. In generale, tuttavia, i linguaggi, gli strumenti e le tecniche per la 
+		programmazione parallela potrebbero non essere adatti per la programmazione concorrente 
+		e viceversa. 
+
+
+	DoubleCheckedLocking
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			TODO: Da fare	
+
+	Event-based Asyncronous
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Le applicazioni che eseguono molte attività contemporaneamente, ma rimangono reattive 
+			all'interazione dell'utente, spesso richiedono una progettazione che utilizza più thread. 
+			Lo spazio dei nomi System.Threading fornisce tutti gli strumenti necessari per creare 
+			applicazioni multithread ad alte prestazioni, ma l'utilizzo efficace di questi strumenti 
+			richiede un'esperienza significativa con l'ingegneria del software multithreading. 
+			Per applicazioni multithread relativamente semplici, il componente BackgroundWorker 
+			fornisce una soluzione semplice. Per applicazioni asincrone più sofisticate, prendere 
+			in considerazione l'implementazione di una classe che aderisca al modello asincrono 
+			basato su eventi.
+			Il modello asincrono basato su eventi rende disponibili i vantaggi delle applicazioni 
+			multithread nascondendo molti dei problemi complessi inerenti alla progettazione 
+			multithread. L'utilizzo di una classe che supporta questo modello può consentire di:
+				* Esegui attività dispendiose in termini di tempo, come download e 
+				  operazioni di database, "in background", senza interrompere l'applicazione.
+				* Esegui più operazioni contemporaneamente, ricevendo notifiche al termine di ciascuna.
+				* Attendere che le risorse diventino disponibili senza arrestare ("bloccare") l'applicazione.
+				* Comunicare con operazioni asincrone in sospeso utilizzando il familiare modello 
+				  di eventi e delegati. 
+			Una classe che supporta il modello asincrono basato su eventi avrà uno o più metodi 
+			denominati MethodNameAsync. 
+			Questi metodi possono eseguire il mirroring delle versioni sincrone, che eseguono la 
+			stessa operazione sul thread corrente. La classe può anche avere un evento 
+			MethodNameCompleted e può avere un metodo MethodNameAsyncCancel (o semplicemente 
+			CancelAsync).
+			Il modello asincrono basato su eventi può assumere diverse forme, a seconda della 
+			complessità delle operazioni supportate da una particolare classe. Le classi più semplici 
+			possono avere un singolo metodo MethodNameAsync e un evento MethodNameCompleted 
+			corrispondente. Le classi più complesse possono avere diversi metodi MethodNameAsync, 
+			ognuno con un evento MethodNameCompleted corrispondente, nonché versioni sincrone di 
+			questi metodi. Le classi possono facoltativamente supportare l'annullamento, la creazione 
+			di report sullo stato di avanzamento e i risultati incrementali per ogni metodo asincrono.
+			Un metodo asincrono può anche supportare più chiamate in sospeso (più chiamate simultanee), 
+			consentendo al codice di chiamarlo un numero qualsiasi di volte prima di completare altre 
+			operazioni in sospeso. La corretta gestione di questa situazione potrebbe richiedere 
+			all'applicazione di tenere traccia del completamento di ogni operazione.
+
+	Guarded Supension
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Nella programmazione concorrente, la sospensione protetta (Guarded Suspension) è un modello
+			di progettazione software per la gestione delle operazioni che richiedono sia l'acquisizione 
+			di un Lock sia una precondizione da soddisfare prima che l'operazione possa essere eseguita. 
+			Il modello di sospensione protetta viene in genere applicato alle chiamate di metodo nei 
+			programmi orientati agli oggetti e comporta la sospensione della chiamata al metodo e 
+			il thread di chiamata, fino a quando la precondizione (che funge da guardia), 
+			non è soddisfatta.
+
+	Join 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Join-patterns fornisce un modo per scrivere programmi per computer concorrenti, paralleli e 
+			distribuiti tramite il passaggio di messaggi. 
+			Rispetto all'uso di thread e blocchi, questo è un modello di programmazione di alto livello 
+			che utilizza il modello di costrutti di comunicazione per astrarre la complessità dell'ambiente 
+			concorrente e consentire la scalabilità. Il suo focus è sull'esecuzione di un accordo 
+			tra messaggi atomicamente consumati da un gruppo di canali.
+			Questo modello si basa sul join-calculus e utilizza la corrispondenza dei modelli. 
+			Concretamente, questo viene fatto consentendo la definizione congiunta di diverse 
+			funzioni e/o canali abbinando modelli di chiamata e messaggi simultanei. 
+			È un tipo di modello di concorrenza perché rende più facile e flessibile per queste entità 
+			comunicare e gestire il paradigma di programmazione multi-thread.
+			** Cardelli, Benton and Fournet proposed an object-oriented version of join patterns 
+			   for C# called Polyphonic C#
+			Gli esempi proposti nel codice in allegato riportano diversi modi di trattare il Join con
+			l'uso di Barriere(Barriers) Mutual exclusion Producer/Consumer ReadWriteLock e Sempahore
+			o viene affrontato il famoso problema dei filosofi a tavbola che è utilizzato nella 
+			progettazione di algoritmi concorrenti per illustrare problemi di sincronizzazione 
+			e tecniche per risolverli.
+
+	Message Design Pattern (MDP)
+
+		Quando utilizzare questo Pattern e scopi.:
+			
+			Il Message Designa Pattern già descritto come Modello Architetturale, nella
+			modellazione di infrastrtutture basate su cloud è necessario definire che
+			i pattern per la gestione di più Thread concorrenti o in alcuni casi Paralleli
+			seguono la stessa dinamica del broker di messaggi come era stato riportato in 
+			quell'esempio ma tenendo conto dei fattori principi dei modelli concorrenti
+			basati su più accessi contemporanei alla stessa fonte.
+			E' un modello principale per il convoglio di un pattern in grado di esercitare
+			in quello che è la comunicazione tra sistemi distribuiti di rete ma internamente
+			coinvolto nell'erogare un servizio capace di trrattare questi messaggi e queste
+			risposte in più thread in modo concorrente o anche in modo parallelo con più
+			processori in atto. 
+
+	Lock
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			In alcuni casi, abbiamo bisogno di condividere oggetti tra thread diversi. 
+			In genere, è necessario progettare un meccanismo di concorrenza per gestire diversi 
+			stati degli oggetti condivisi. Se lo stato di un oggetto condiviso viene aggiornato 
+			da un thread, gli altri thread devono essere avvisati in modo che possano gestire 
+			l'oggetto di conseguenza.
+			A volte, vogliamo porre restrizioni sugli oggetti condivisi. Ad esempio, è 
+			possibile condividere solo oggetti di sola lettura o è presente una sola istanza di 
+			una classe. Questo modello introduce due modelli di concorrenza che ci aiutano 
+			a raggiungere l'obiettivo di cui sopra.
+			Il double-check per il lock e l'object immutable come lock
+
+	Monitor Object
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Il modello di progettazione Monitor Object sincronizza l'esecuzione simultanea 
+			del metodo per garantire che all'interno di un oggetto venga eseguito un solo 
+			metodo alla volta. Consente inoltre ai metodi di un oggetto di pianificare in 
+			modo cooperativo le sequenze di esecuzione.
+			Il modello di progettazione Monitor Object sincronizza l'esecuzione simultanea 
+			del metodo per garantire che un solo metodo alla volta venga eseguito all'interno 
+			di un oggetto. Consente inoltre ai metodi di un oggetto di pianificare in modo 
+			cooperativo le loro sequenze di esecuzione.
+
+
+	Active Object
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Il modello Active Object disaccoppia l'invocazione del metodo dall'esecuzione del metodo. 
+			La chiamata al metodo viene effettuata su un oggetto attivo nel thread client e 
+			l'esecuzione del metodo viene eseguita da un thread indipendente in modo asincrono 
+			senza bloccare il thread client. Pertanto, il thread client non viene vincolato 
+			fino al termine dell'esecuzione del metodo. Dopo aver richiamato un metodo e inviato 
+			il comando per eseguirlo all'utilità di pianificazione o al dispatcher, è possibile 
+			eseguire altre attività.
+			Il metodo viene richiamato su Active Object. Un oggetto attivo ha un'interfaccia 
+			pubblica denominata proxy. L'oggetto attivo crea un messaggio (modello di comando) 
+			che contiene le informazioni sulla chiamata al metodo e le inserisce nella coda 
+			dei messaggi. Dopo che il messaggio è stato messo in coda, l'utilità di pianificazione 
+			o il dispatcher riceve una notifica per leggere il messaggio. 
+			L'Utilità di pianificazione legge il messaggio decommettendolo dalla coda dei messaggi. 
+			Dopo aver letto il messaggio, l'Utilità di pianificazione crea uno o più thread 
+			denominati Servant per ogni esecuzione del metodo. Il messaggio inviato dall'Utilità 
+			di pianificazione viene interpretato ed eseguito dal Servo. Il metodo può restituire 
+			un risultato come implementazione futura al client.
