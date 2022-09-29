@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DotNetDesignPatternDemos.Concurrency.Join.Mutual
+namespace DotNetDesignPatternDemos.Concurrency.ProducerConsumer.Mutual
 {
     /*
      * Concurrency

@@ -181,3 +181,18 @@ Concurrency Patterns
 			denominati Servant per ogni esecuzione del metodo. Il messaggio inviato dall'Utilità 
 			di pianificazione viene interpretato ed eseguito dal Servo. Il metodo può restituire 
 			un risultato come implementazione futura al client.
+
+	Producer/Consumer
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Il modello Produttore/Consumatore viene utilizzato per disaccoppiare i processi che
+			producono e consumano dati a velocità diverse. 
+			Gli anelli paralleli del modello Produttore/Consumatore sono suddivisi in due categorie; 
+			quelli che producono dati e quelli che consumano i dati prodotti. 
+			Le code di dati sono utilizzato per comunicare i dati tra i loop nel modello di 
+			progettazione produttore/consumatore. 
+			Queste code offrono il vantaggio del buffering dei dati tra i loop del produttore e 
+			del consumatore.
+		
+

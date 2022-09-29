@@ -117,6 +117,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08.Concurrency.MonitorObjec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08.Structural.MessagePattern", "02.STRUCTURAL\08.Structural.MessageBroker\08.Structural.MessagePattern.csproj", "{76BACAE5-5F5C-4692-8000-72FC8AB2A617}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09.Concurrency.ProducerConsumer", "04.CONCURRENCY\09.Concurrency.ProducerConsumer\09.Concurrency.ProducerConsumer.csproj", "{E3296105-AFBE-4B85-BC39-FF2EE37834FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -271,6 +273,10 @@ Global
 		{76BACAE5-5F5C-4692-8000-72FC8AB2A617}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76BACAE5-5F5C-4692-8000-72FC8AB2A617}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76BACAE5-5F5C-4692-8000-72FC8AB2A617}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3296105-AFBE-4B85-BC39-FF2EE37834FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3296105-AFBE-4B85-BC39-FF2EE37834FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3296105-AFBE-4B85-BC39-FF2EE37834FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3296105-AFBE-4B85-BC39-FF2EE37834FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -313,6 +319,7 @@ Global
 		{77E2FBF1-6B3A-4D7F-BBE0-D70ED7D0CF3B} = {F15D868F-8E87-4C7E-BB83-FDD8401470BD}
 		{8564CA1D-49B1-4C20-8A67-22CAB33AEA1C} = {F15D868F-8E87-4C7E-BB83-FDD8401470BD}
 		{76BACAE5-5F5C-4692-8000-72FC8AB2A617} = {2CF8A30A-A690-4D7A-85A4-0B65C013D309}
+		{E3296105-AFBE-4B85-BC39-FF2EE37834FA} = {F15D868F-8E87-4C7E-BB83-FDD8401470BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF390375-44E9-4CCB-8793-0D590B98E222}

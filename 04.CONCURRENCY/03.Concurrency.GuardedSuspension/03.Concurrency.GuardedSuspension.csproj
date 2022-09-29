@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>_03.Concurrency.GuardedSuspension</RootNamespace>
+    <RootNamespace>Concurrency.GuardedSuspension</RootNamespace>
   </PropertyGroup>
 
 </Project>

@@ -3,7 +3,11 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>Concurrency.MessageDesignPattern</RootNamespace>
+    <RootNamespace>Concurrency.ProducerConsumer</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DumpExtensions" Version="2.0.0" />
+  </ItemGroup>
 
 </Project>

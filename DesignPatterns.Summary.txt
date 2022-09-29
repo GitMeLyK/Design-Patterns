@@ -142,6 +142,7 @@ Modelli di concorrenza
  								*' Lock (Read write lock/double checked)
 								*' Active Object
 								*' Monitor Object
+								*' Producer Consumer
 								Compute Kernel
 								Scheduler
 								Reactor 
