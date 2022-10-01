@@ -52,7 +52,7 @@ Cosa devo applicare quando e come?
 								* Multiton
 								* Prototype
 
-	Modelli di progettazione strutturale ( Structural Patterns)
+	Modelli di Progettazione Strutturale ( Structural Patterns)
 
 		Come faccio a creare strutture grandi, coese, ma efficienti? 
 		Come posso ottimizzare correttamente l'interazione delle mie entità? 
@@ -109,19 +109,19 @@ Cosa devo applicare quando e come?
 								* Mediator
 								* Memento
 								* Null Object
-								* State
+								* State (State Machine)
 								* Strategy
 								* Observer
 								Protocol Stack
-								Scheduled Task
-								Specification
+								* Scheduled Task ( usato anche come Concurrency )
+								* Specification
 								Single-Serving Visitor
 								Blackboard
 								* Command
 								* Template Method
 								* Interpreter
 
-Modelli di concorrenza
+Modelli Concurrency (and parallel)
 
 		Come anche i calcoli allo stesso tempo, così il parallelo può essere eseguito, 
 		quindi anche i modelli possono essere creati parallelamente.
@@ -133,23 +133,69 @@ Modelli di concorrenza
 		sovraccarico. 
 		Nella legenda seguente vengono illustrati alcuni dei modelli definiti come modelli Concurrency.
 
-								Binding Properties
+								*' Balcking 
 								*' Double-Checked Locking
-								*' Event-based Asyncronous
 								*' Guarded Supension
+								
+								*' Event-based Asyncronous
+								
 								*' Join (Barrier Dining)
+								
 								*' ** Messaging (MDP) --> intro to microservice concurrency
- 								*' Lock (Read write lock/double checked)
+ 								
+								*' Lock (Read write lock/double checked)
+								
 								*' Active Object
 								*' Monitor Object
 								*' Producer Consumer
-								Compute Kernel
-								Scheduler
-								Reactor 
-								Leader/Followers 
-								Balcking 
-								Thread-Pool
-								Thread-Local
+								*' Leader/Followers 
+								*' Half-Sync/Half-Async
+								
+								* Binding Properties (UI) --> intro to MVVM XAML UI
+								
+								*' Reactor/Proactor
+								
+								* Scheduler-Task
+								
+								*' Thread-Pool
+								*' Thread-Local
+
+Modelli Architetturali
+
+		Quando si decide di sviluppare un software, occorre sempre dedicarsi ad una fase di attento 
+		design pre-sviluppo, volto a realizzare un sistema che offra le funzionalità richieste. 
+		In questa fase ciò che si fa è individuare un’architettura del sistema che sia adatta 
+		a supportare i suoi scopi e abbia determinati requisiti.
+
+		Inventarsi un’architettura potrebbe però non essere così semplice e immediato. 
+		Per questo motivo esistono dei pattern architetturali già definiti. 
+		Per sistemi di grandi dimensioni è indispensabile definire le linee guida per lo sviluppo 
+		per evitare di perdere il controllo del software e di non rispettare i requisiti richiesti.
+
+								* Front controller
+								*' Interceptor
+								*' BlackBoard
+								
+								* MVC
+								* MVVM
+								* MVP
+								*' ADR
+								
+								ECS
+								n-tier
+								
+								* Specification (Trattato in Behavioral)
+								
+								Publish–subscribe
+								Naked objects
+								Service locator
+								Active record
+								Identity map
+								Data access object
+								Data transfer object
+								Inversion of control (IoC)
+								Model 2
+								Broker
 
 Conclusione
 

@@ -456,3 +456,29 @@
 			chiama il Visit nell'Accept() questo gli restiutsca un valore di ritorno trasformato o ridotto ai tipi primitivi, dove
 			la tecnica è la stessa ma l'Accept() sarà un T Trasform() come metodo che restiutisce un tipo e il Visit sarà un metodo
 			con nome più affine come T Reduce() che riporterà il valore dalla valutazione in corso.
+
+	Specification
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Nella programmazione informatica, il modello di specifica è un particolare modello di progettazione software, 
+			in base al quale le regole di business possono essere ricombinate concatenando le regole di business utilizzando la 
+			logica booleana. 
+			Il modello viene spesso utilizzato nel contesto della progettazione basata sul dominio.
+			Un modello di specifica delinea una regola di business che può essere combinata con altre regole di 
+			business. 
+			In questo modello, un'unità di logica di business eredita la propria funzionalità dalla classe 
+			Composite Specification dell'aggregato astratto. 
+			La classe Composite Specification dispone di una funzione denominata IsSatisfiedBy che restituisce 
+			un valore booleano. Dopo l'istanziazione, la specifica viene "concatenata" con altre specifiche, 
+			rendendo le nuove specifiche facilmente manutenibili, ma altamente personalizzabili. 
+			Inoltre, al momento dell'istanza, la logica di business può, attraverso l'invocazione del metodo 
+			o l'inversione del controllo, avere il suo stato alterato al fine di diventare un delegato di altre 
+			classi come un repository di persistenza.
+			Come conseguenza dell'esecuzione della composizione runtime della logica di business/dominio di alto 
+			livello, il modello Specification è uno strumento utile per convertire i criteri di ricerca utente 
+			ad-hoc in logica di basso livello da elaborare dai repository.
+			Poiché una specifica è un incapsulamento della logica in una forma riutilizzabile, è molto 
+			semplice eseguire test approfonditi e, se utilizzata in questo contesto, è anche un'implementazione 
+			del modello di oggetti umili.
+

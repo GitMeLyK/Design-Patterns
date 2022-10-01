@@ -1,0 +1,292 @@
+
+Architectural Patterns
+
+	Premesessa 
+
+		Cos’è un pattern architetturale
+		Generalmente viene definito come “una soluzione generale e riutilizzabile per un problema 
+		comune presente all’interno di un particolare contesto”. 
+		In sostanza un pattern definisce lo scheletro che dovrà avere il software, 
+		quali servizi dovranno entrare in gioco, le parti coinvolte e la logica di interazione 
+		tra di esse.
+
+		Simili ai design pattern ma applicati ad un contesto più ampio, i pattern architetturali 
+		sono fondamentali per il design di un enterprise software. 
+		Svolgono innanzitutto un ruolo di comunicazione tra gli stakeholders, ovvero i protagonisti 
+		del progetto, offrendo un’astrazione comune del sistema. 
+		I pattern offrono una base per la mutua comprensione, negoziazione e consenso, 
+		senza che sia richiesta conoscenza informatica dettagliata.
+
+		Un’architettura inoltre definisce l’organizzazione strutturale che dovrà essere rispettata, 
+		e potrà essere poi utilizzata come metro di valutazione del progresso del progetto. 
+		Sapendo esattamente quale aspetto dovrà avere il prodotto finale, sarà anche più semplice 
+		capire se ci si sta allontanando dai confini prefissati, ed eventualmente aggiustare il tiro.
+
+		Essa facilita inoltre la gestione del cambiamento, quando dovesse essere necessario. 
+		Conoscendo la struttura logica del progetto, è più facile individuare i punti dove andare 
+		ad agire e prevedere in che modo le diverse parti saranno influenzate dall’evoluzione del 
+		sistema.
+
+		Ultimo, ma non per importanza, assicura una maggiore robustezza del sistema rispetto ad 
+		altre possibili scelte architetturali pensate da zero. 
+		Essendo un modello studiato e testato, infatti, fornisce la soluzione ottimale per un 
+		problema o un’intera categoria di problemi.
+
+	Layered. 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Probabilmente il più conosciuto, il layered è un pattern che, come dice la parola, 
+			è organizzato a livelli. 
+			Anche se non esiste un numero predefinito di livelli, i più utilizzati sono 5:
+				livello di presentazione
+				livello applicativo
+				livello di business o di dominio
+				livello di persistenza o di accesso ai dati
+				livello del database
+			Ogni livello fornisce un’astrazione per quello successivo, e ha una sua 
+			“responsabilità” da gestire. 
+			Generalmente viene usato per applicazioni desktop e e-commerce. 
+			La maggior parte degli sviluppatori ha familiarità con questo livello ed è quindi 
+			più immediato da mettere in pratica, ma l’applicazione risultante è monolitica 
+			e difficile da eventualmente dividere in più parti.
+
+	Client-server. 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Anch’esso tra i più conosciuti, è composto da due parti: client e server. 
+			La sua logica va di pari passo con l’idea delle applicazioni online. 
+			Il server è infatti quello che fornisce i contenuti e i servizi a più client, 
+			e resta in attesa delle loro richieste. Questo tipo di architettura è un’evoluzione 
+			della condivisione semplice delle risorse: il server, infatti, è in grado di soddisfare 
+			le richieste di più client e gestisce gli accessi per evitare conflitti.
+
+	Master-slave. 
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Un altro pattern con due parti, ma molto diverso dal precedente. 
+			Il master-slave viene generalmente utilizzato in sistemi che richiedono 
+			delle computazioni significative. 
+			Una componente eletta master distribuisce il lavoro tra degli slave 
+			identici tra loro, ottiene i singoli risultati e li utilizza per 
+			fornire quello finale.
+
+	Pipe-filter. 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Mai sentito parlare di pipeline? Dietro di essa c’è l’idea di questo pattern. 
+			I sistemi costruiti seguendo le sue specifiche producono e processano stream di 
+			dati. I dati vengono manipolati tramite degli step, che sono inclusi in dei filtri. 
+			In essi avviene la modifica e alterazione dei dati. 
+			Le pipes, invece, sono responsabili dello spostamento delle informazioni. 
+			I servizi di streaming utilizzano questo pattern, in particolare per buffering 
+			e sincronizzazione. 
+			Altri esempi? Il compilatore: il codice scritto dal programmatore deve superare 
+			l’analisi lessicale, il parsing, l’analisi semantica e infine la generazione 
+			in linguaggio macchina.
+
+	Broker. 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Questo pattern è utilizzato nei sistemi distribuiti, dove le componenti sono 
+			disaccoppiate. 
+			La comunicazione tra le parti è ovviamente remota, e per gestirla c’è necessità 
+			di un’entità che coordini lo scambio di messaggi. 
+			Il broker fa proprio questo, ponendosi in mezzo alle entità. 
+			Può essere pensato come un client-server in cui però ogni entità espone dei 
+			servizi e ognuna di esse può richiederne, e la loro comunicazione è mediata da 
+			un’entità centrale. I middleware, per offrire il loro servizio, hanno al loro 
+			interno un message broker.
+
+	Peer-to-peer. 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Non si può che associarlo immediatamente ai torrent, e in generale al file-sharing. 
+			Questo pattern prevede la presenza di entità considerate tutte uguali (peer), che 
+			possono agire alternativamente da client o da server, cambiando in maniera dinamica. 
+			Contrariamente al broker, in questo caso non c’è nessuna componente che si erge 
+			alla gestione della comunicazione.
+
+	Event-source. 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Questo pattern viene utilizzato nei sistemi che utilizzano gli eventi. 
+			Le componenti fondamentali sono l’event source, l’event listener, il canale di 
+			comunicazione e l’event bus. 
+			I canali rappresentano il luogo in cui gli eventi, o messaggi, vengono pubblicati, 
+			e sono inseriti all’interno del bus degli eventi. 
+			Alle estremità troviamo la source, ovvero l’entità che genera gli eventi pubblicando 
+			sul canale, e il listener, che effettuano il subscribing ad un canale e vengono 
+			notificati quando c’è un nuovo messaggio sul canale. 
+			Anche in questo caso parliamo di un pattern fortemente improntato alla comunicazione 
+			tra entità loosely-coupled.
+
+	--- --- --- ----
+	Model-View-Controller. (MVC) 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Conosciuto come MVC, è il pattern maggiormente utilizzato soprattutto nelle applicazioni 
+			e nei framework web. Tra i primi ad essere insegnati in ambienti accademici, 
+			è un pattern che racchiude la logica delle applicazioni interattive e consente 
+			di gestirle al meglio. Nell’MVC i protagonisti sono tre: il model, la view e 
+			il controller. Il primo contiene le funzionalità e gestisce i dati, definendo gli 
+			algoritmi e le funzioni che descrivono la logica del programma. La view rappresenta 
+			la parte visiva, ed è con essa che si interfaccia l’utente. In un buon design, essa 
+			dovrebbe essere il più possibile agnostica riguardo il model. Infine, il controller 
+			si pone tra i due, da una parte gestendo l’input dell’utente e dall’altro fornendo le 
+			informazioni necessarie al modello. Se seguito adeguatamente, permette una totale 
+			distinzione tra le parti, che possono essere riutilizzate, modificate, sostituite 
+			senza incidere sulle altre.
+
+	Model-View-ViewModel. (MVVM) 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Conosciuto come MVVM, è il pattern maggiormente utilizzato soprattutto nelle applicazioni 
+			.net che fanno uso dell'ormai noto WPF basato su linguaggio XAML che presenta per applicazioni
+			realtime su desktop o mobile un modello di progettazione basato sull'innesto tra la logica
+			applicativa e quella della vista e della sua organizzazione.
+			Model–view–viewmodel (MVVM) è un modello architetturale software che facilita la 
+			separazione dello sviluppo dell'interfaccia utente grafica (la vista) – 
+			sia tramite un linguaggio di markup o codice GUI – dallo sviluppo della logica di 
+			business o della logica di back-end (il modello) in modo che la vista non dipenda 
+			da alcuna piattaforma di modello specifica. Il viewmodel di MVVM è un convertitore 
+			di valori, il che significa che il viewmodel è responsabile dell'esposizione 
+			(conversione) degli oggetti dati dal modello in modo tale che gli oggetti siano 
+			facilmente gestiti e presentati. A questo proposito, il viewmodel è più un modello 
+			che una vista e gestisce la maggior parte se non tutta la logica di visualizzazione 
+			della vista. 
+			Il viewmodel può implementare un modello di mediazione, organizzando l'accesso alla 
+			logica di back-end attorno all'insieme di casi d'uso supportati dalla vista.
+
+	Model-View-Presentation. (MVP) 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Model-view-presenter (MVP) è una derivazione del modello architettonico model-view-controller 
+			(MVC) e viene utilizzato principalmente per la creazione di interfacce utente.
+			In MVP, il presentatore assume la funzionalità di "intermediario". 
+			In MVP, tutta la logica di presentazione viene inviata al relatore.
+
+	Action-Domain-Responder. (ADR) 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Action-domain-responder (ADR) è un modello architetturale software proposto da 
+			Paul M. Jones[1] come perfezionamento di Model-view-controller (MVC) più adatto 
+			per le applicazioni web. ADR è stato concepito per abbinare il flusso di 
+			richiesta-risposta delle comunicazioni HTTP più da vicino rispetto a MVC, 
+			originariamente progettato per applicazioni software desktop. 
+			Simile a MVC, il modello è diviso in tre parti.
+
+	--- --- --- ----
+
+	Entity-Component-System. (ECS) 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Conosciuto come ECS, è il pattern maggiormente utilizzato soprattutto nelle applicazioni 
+
+	n-tier
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Conosciuto come maggiormente per
+
+	Publish-Subscribe. 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Conosciuto come sender and receiver message board
+			
+	Naked Objects
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Conosciuto come sender and receiver message board
+
+	Service Locator
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Conosciuto come 
+
+	---- ---- ----
+	Active Record
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Conosciuto come 
+
+	Identity Map
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Conosciuto come 
+
+	Data Access Object (DAO)
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Conosciuto come 
+
+	Data Transfer Object (DTO)
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Conosciuto come 
+
+	---- ---- ----
+
+	Inversion Of Control (IoC)
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Conosciuto come 
+	
+	
+	Blackboard. 
+
+		Quando utilizzare questo Pattern e scopi.:
+	
+			Questo pattern viene utilizzato nel campo della speech recognition e in generale in 
+			tutti gli ambiti che utilizzano algoritmi di identificazione e interpretazione. 
+			A voler generalizzare ancora di più, è la strategia seguita per tutti i problemi 
+			che non hanno soluzioni deterministiche note. Nell’architettura troviamo una 
+			blackboard, che è una memoria globale che contiene “oggetti” del dominio della 
+			soluzione. 
+			Le control component sono le entità che hanno accesso alla blackboard e nella 
+			quale possono aggiungere nuovi oggetti, oltre che ricercare quelli di cui 
+			hanno bisogno. Per poterli identificare, utilizzano una knowledge source tramite 
+			pattern matching che fornisce una rappresentazione esistente da cui attingere.
+
+	FrontController
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Il modello di progettazione del software del controller frontale è elencato 
+			in diversi cataloghi di modelli e correlato alla progettazione di applicazioni Web. 
+			È "un controller che gestisce tutte le richieste di un sito Web", che è una struttura 
+			utile per gli sviluppatori di applicazioni Web per ottenere flessibilità e 
+			riutilizzo senza ridondanza del codice. Gli attori coinvolti sono 
+			Controllers Helpers Dispatchers Viste
+
+	Interceptor
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Nel campo dello sviluppo software, un modello intercettore è un modello di progettazione 
+			software che viene utilizzato quando i sistemi software o i framework vogliono offrire 
+			un modo per cambiare, o aumentare, il loro solito ciclo di elaborazione. 
+			Ad esempio, una sequenza di elaborazione tipica (semplificata) per un server Web 
+			consiste nel ricevere un URI dal browser, mapparlo a un file su disco, aprire il file 
+			e inviarne il contenuto al browser. Ognuno di questi passaggi potrebbe essere sostituito 
+			o modificato, ad esempio sostituendo il modo in cui gli URI sono mappati ai nomi dei 
+			file o inserendo un nuovo passaggio che elabora il contenuto dei file.

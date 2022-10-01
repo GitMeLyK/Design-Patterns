@@ -1,22 +1,22 @@
-
+﻿
 
 Concurrency Patterns
 
 	Premesessa (Concurrency e Parallel)
 
-		Il concetto di calcolo concorrente � spesso confuso con il concetto correlato ma distinto 
+		Il concetto di calcolo concorrente è spesso confuso con il concetto correlato ma distinto 
 		di calcolo parallelo, sebbene entrambi possano essere descritti come "processi multipli 
 		in esecuzione durante lo stesso periodo di tempo". Nel calcolo parallelo, l'esecuzione 
 		avviene nello stesso istante fisico: ad esempio, su processori separati di una macchina 
-		multiprocessore, con l'obiettivo di accelerare i calcoli: il calcolo parallelo � 
-		impossibile su un singolo processore (one-core), poich� solo un calcolo pu� verificarsi 
+		multiprocessore, con l'obiettivo di accelerare i calcoli: il calcolo parallelo è 
+		impossibile su un singolo processore (one-core), poiché solo un calcolo può verificarsi 
 		in qualsiasi istante (durante ogni singolo ciclo di clock). 
 		Al contrario, il calcolo concorrente consiste in vite di processo che si sovrappongono, 
-		ma l'esecuzione non deve avvenire nello stesso istante. L'obiettivo qui � quello di 
-		modellare i processi nel mondo esterno che si verificano contemporaneamente, come pi� 
+		ma l'esecuzione non deve avvenire nello stesso istante. L'obiettivo qui è quello di 
+		modellare i processi nel mondo esterno che si verificano contemporaneamente, come più 
 		client che accedono a un server contemporaneamente. 
-		Strutturare i sistemi software come composti da pi� parti comunicanti simultanee pu� 
-		essere utile per affrontare la complessit�, indipendentemente dal fatto che le parti 
+		Strutturare i sistemi software come composti da più parti comunicanti simultanee può 
+		essere utile per affrontare la complessità, indipendentemente dal fatto che le parti 
 		possano essere eseguite in parallelo. 
 
 		Ad esempio, i processi concorrenti possono essere eseguiti su un core interlasciando le 
@@ -24,7 +24,7 @@ Concurrency Patterns
 		solo un processo viene eseguito alla volta e, se non viene completato durante la 
 		sezione temporale, viene messo in pausa, un altro processo inizia o riprende e quindi 
 		successivamente il processo originale viene ripreso. 
-		In questo modo, pi� processi sono parzialmente attraverso l'esecuzione in un singolo 
+		In questo modo, più processi sono parzialmente attraverso l'esecuzione in un singolo 
 		istante, ma solo un processo viene eseguito in quell'istante.
 
 		I calcoli concorrenti possono essere eseguiti in parallelo, ad esempio, assegnando ogni 
@@ -34,84 +34,147 @@ Concurrency Patterns
 		e viceversa. 
 
 
-	DoubleCheckedLocking
-
-		Quando utilizzare questo Pattern e scopi.:
-
-			TODO: Da fare	
 
 	Event-based Asyncronous
 
 		Quando utilizzare questo Pattern e scopi.:
 
-			Le applicazioni che eseguono molte attivit� contemporaneamente, ma rimangono reattive 
-			all'interazione dell'utente, spesso richiedono una progettazione che utilizza pi� thread. 
+			Le applicazioni che eseguono molte attività contemporaneamente, ma rimangono reattive 
+			all'interazione dell'utente, spesso richiedono una progettazione che utilizza più thread. 
 			Lo spazio dei nomi System.Threading fornisce tutti gli strumenti necessari per creare 
 			applicazioni multithread ad alte prestazioni, ma l'utilizzo efficace di questi strumenti 
 			richiede un'esperienza significativa con l'ingegneria del software multithreading. 
 			Per applicazioni multithread relativamente semplici, il componente BackgroundWorker 
-			fornisce una soluzione semplice. Per applicazioni asincrone pi� sofisticate, prendere 
+			fornisce una soluzione semplice. Per applicazioni asincrone più sofisticate, prendere 
 			in considerazione l'implementazione di una classe che aderisca al modello asincrono 
 			basato su eventi.
 			Il modello asincrono basato su eventi rende disponibili i vantaggi delle applicazioni 
 			multithread nascondendo molti dei problemi complessi inerenti alla progettazione 
-			multithread. L'utilizzo di una classe che supporta questo modello pu� consentire di:
-				* Esegui attivit� dispendiose in termini di tempo, come download e 
+			multithread. L'utilizzo di una classe che supporta questo modello può consentire di:
+				* Esegui attività dispendiose in termini di tempo, come download e 
 				  operazioni di database, "in background", senza interrompere l'applicazione.
-				* Esegui pi� operazioni contemporaneamente, ricevendo notifiche al termine di ciascuna.
+				* Esegui più operazioni contemporaneamente, ricevendo notifiche al termine di ciascuna.
 				* Attendere che le risorse diventino disponibili senza arrestare ("bloccare") l'applicazione.
 				* Comunicare con operazioni asincrone in sospeso utilizzando il familiare modello 
 				  di eventi e delegati. 
-			Una classe che supporta il modello asincrono basato su eventi avr� uno o pi� metodi 
+			Una classe che supporta il modello asincrono basato su eventi avrà uno o più metodi 
 			denominati MethodNameAsync. 
 			Questi metodi possono eseguire il mirroring delle versioni sincrone, che eseguono la 
-			stessa operazione sul thread corrente. La classe pu� anche avere un evento 
-			MethodNameCompleted e pu� avere un metodo MethodNameAsyncCancel (o semplicemente 
+			stessa operazione sul thread corrente. La classe può anche avere un evento 
+			MethodNameCompleted e può avere un metodo MethodNameAsyncCancel (o semplicemente 
 			CancelAsync).
-			Il modello asincrono basato su eventi pu� assumere diverse forme, a seconda della 
-			complessit� delle operazioni supportate da una particolare classe. Le classi pi� semplici 
+			Il modello asincrono basato su eventi può assumere diverse forme, a seconda della 
+			complessità delle operazioni supportate da una particolare classe. Le classi più semplici 
 			possono avere un singolo metodo MethodNameAsync e un evento MethodNameCompleted 
-			corrispondente. Le classi pi� complesse possono avere diversi metodi MethodNameAsync, 
-			ognuno con un evento MethodNameCompleted corrispondente, nonch� versioni sincrone di 
+			corrispondente. Le classi più complesse possono avere diversi metodi MethodNameAsync, 
+			ognuno con un evento MethodNameCompleted corrispondente, nonché versioni sincrone di 
 			questi metodi. Le classi possono facoltativamente supportare l'annullamento, la creazione 
 			di report sullo stato di avanzamento e i risultati incrementali per ogni metodo asincrono.
-			Un metodo asincrono pu� anche supportare pi� chiamate in sospeso (pi� chiamate simultanee), 
+			Un metodo asincrono può anche supportare più chiamate in sospeso (più chiamate simultanee), 
 			consentendo al codice di chiamarlo un numero qualsiasi di volte prima di completare altre 
 			operazioni in sospeso. La corretta gestione di questa situazione potrebbe richiedere 
 			all'applicazione di tenere traccia del completamento di ogni operazione.
+
+--------------------------------
+	
+	Premessa.:
+
+	Questi modelli apparsi in passato sono da considerarsi per uno studio verso metodologie
+	più moderne, ma è bene tenere in considerazioni di come e perchè sono stati ormai
+	declassificati.
+
+	Sono stati usatoi in passato per avere una prospettiva migliore le odierne 
+	tecniche di concorrenza.
+
+	Questi modelli di progettazione includono: 
+			Balking Pattern, 
+			Guarded Suspension
+			DoubleCheckedLocking.
+	
+	Questi schemi sembrano essere sorti quando le JVM erano più lente e la sincronizzazione non
+	ben compresa come lo è oggi.
+	
+	Questi modelli sono apparsi in qualche modo antiquati man mano che le JVM sono migliorate, 
+	più recenti sono stati introdotti modelli di progettazione e un maggiore uso della programmazione 
+	funzionale le strutture dati immutabili/persistenti del linguaggio aiutano a ridurre le 
+	complessità di implementazione e manutenzione della concorrenza.
+	Comunque è bello vedere cosa è stato usato in passato per avere una prospettiva migliore
+	delle odierne tecniche di concorrenza.
+
+	Balking
+
+		Quando utilizzare questo Pattern e scopi.:
+			
+			Trattare con Stati incompleti e scorretti. Se il metodo di un oggetto viene invocato 
+			quando l'oggetto è in uno stato inappropriato, quindi il metodo lo farà
+			tornare senza fare nulla.
+			I pattern balking vengono utilizzati per impedire a un oggetto di eseguire un determinato 
+			codice se è in uno stato incompleto o inappropriato.
+			Questi modello e' apparsp in qualche modo antiquato man mano che le JVM è migliorata, 
+			e più recenti sono stati introdotti modelli di progettazione e un maggiore uso della 
+			programmazione funzionale le strutture dati immutabili/persistenti del linguaggio aiutano 
+			a ridurre le complessità di implementazione e manutenzione della concorrenza.
+
+	DoubleCheckedLocking
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			● È un modello di progettazione del software utilizzato per ridurre il sovraccarico 
+			  dell'acquisizione di un lock che era più significativa in passato.
+			● Prima verifica la condizione di blocco senza effettivamente acquisire il blocco. 
+			  Se la prima prova per i passaggi di blocco, quindi si verifica l'effettiva 
+			  implementazione del blocco.
+			● Utilizza la tecnica dell'inizializzazione pigra (Lazy).
+
+			Il modello di progettazione Double-Check Locking era una volta molto utile quando 
+			il sovraccarico per la sincronizzazione su un oggetto era molto costosa.
+			Con le moderne JVM, i costi generali per la sincronizzazione non è così dannosa per il
+			programma.
 
 	Guarded Supension
 
 		Quando utilizzare questo Pattern e scopi.:
 
-			Nella programmazione concorrente, la sospensione protetta (Guarded Suspension) � un modello
+			Nella programmazione concorrente, la sospensione protetta (Guarded Suspension) è un modello
 			di progettazione software per la gestione delle operazioni che richiedono sia l'acquisizione 
 			di un Lock sia una precondizione da soddisfare prima che l'operazione possa essere eseguita. 
 			Il modello di sospensione protetta viene in genere applicato alle chiamate di metodo nei 
 			programmi orientati agli oggetti e comporta la sospensione della chiamata al metodo e 
 			il thread di chiamata, fino a quando la precondizione (che funge da guardia), 
-			non � soddisfatta.
+			non è soddisfatta.
 
+			● Sia il modello di sospensione con protezione che il modello di contrazione sono simili criteri
+			● Gestisce le operazioni che richiedono sia l'acquisizione di un lock che a
+			  condizione preliminare da soddisfare prima che le operazioni possano essere eseguite.
+			● Il modello di sospensione protetta viene in genere applicato alle chiamate di metodo
+			  programmi orientati agli oggetti
+			● Implica la sospensione della chiamata al metodo e del thread chiamante, fino a quando il
+			  presupposto è soddisfatto.
+			● La quantità di tempo per la soddisfazione del precondizionato è generalmente a
+			  tempo relativamente noto.
+
+--------------------------------
+	
 	Join 
 
 		Quando utilizzare questo Pattern e scopi.:
 	
 			Join-patterns fornisce un modo per scrivere programmi per computer concorrenti, paralleli e 
 			distribuiti tramite il passaggio di messaggi. 
-			Rispetto all'uso di thread e blocchi, questo � un modello di programmazione di alto livello 
-			che utilizza il modello di costrutti di comunicazione per astrarre la complessit� dell'ambiente 
-			concorrente e consentire la scalabilit�. Il suo focus � sull'esecuzione di un accordo 
+			Rispetto all'uso di thread e blocchi, questo è un modello di programmazione di alto livello 
+			che utilizza il modello di costrutti di comunicazione per astrarre la complessità dell'ambiente 
+			concorrente e consentire la scalabilità. Il suo focus è sull'esecuzione di un accordo 
 			tra messaggi atomicamente consumati da un gruppo di canali.
 			Questo modello si basa sul join-calculus e utilizza la corrispondenza dei modelli. 
 			Concretamente, questo viene fatto consentendo la definizione congiunta di diverse 
 			funzioni e/o canali abbinando modelli di chiamata e messaggi simultanei. 
-			� un tipo di modello di concorrenza perch� rende pi� facile e flessibile per queste entit� 
+			È un tipo di modello di concorrenza perché rende più facile e flessibile per queste entità 
 			comunicare e gestire il paradigma di programmazione multi-thread.
 			** Cardelli, Benton and Fournet proposed an object-oriented version of join patterns 
 			   for C# called Polyphonic C#
 			Gli esempi proposti nel codice in allegato riportano diversi modi di trattare il Join con
 			l'uso di Barriere(Barriers) Mutual exclusion Producer/Consumer ReadWriteLock e Sempahore
-			o viene affrontato il famoso problema dei filosofi a tavbola che � utilizzato nella 
+			o viene affrontato il famoso problema dei filosofi a tavbola che è utilizzato nella 
 			progettazione di algoritmi concorrenti per illustrare problemi di sincronizzazione 
 			e tecniche per risolverli.
 
@@ -119,16 +182,16 @@ Concurrency Patterns
 
 		Quando utilizzare questo Pattern e scopi.:
 			
-			Il Message Designa Pattern gi� descritto come Modello Architetturale, nella
-			modellazione di infrastrtutture basate su cloud � necessario definire che
-			i pattern per la gestione di pi� Thread concorrenti o in alcuni casi Paralleli
+			Il Message Designa Pattern già descritto come Modello Architetturale, nella
+			modellazione di infrastrtutture basate su cloud è necessario definire che
+			i pattern per la gestione di più Thread concorrenti o in alcuni casi Paralleli
 			seguono la stessa dinamica del broker di messaggi come era stato riportato in 
 			quell'esempio ma tenendo conto dei fattori principi dei modelli concorrenti
-			basati su pi� accessi contemporanei alla stessa fonte.
+			basati su più accessi contemporanei alla stessa fonte.
 			E' un modello principale per il convoglio di un pattern in grado di esercitare
-			in quello che � la comunicazione tra sistemi distribuiti di rete ma internamente
+			in quello che è la comunicazione tra sistemi distribuiti di rete ma internamente
 			coinvolto nell'erogare un servizio capace di trrattare questi messaggi e queste
-			risposte in pi� thread in modo concorrente o anche in modo parallelo con pi�
+			risposte in più thread in modo concorrente o anche in modo parallelo con più
 			processori in atto. 
 
 	Lock
@@ -136,15 +199,17 @@ Concurrency Patterns
 		Quando utilizzare questo Pattern e scopi.:
 
 			In alcuni casi, abbiamo bisogno di condividere oggetti tra thread diversi. 
-			In genere, � necessario progettare un meccanismo di concorrenza per gestire diversi 
+			In genere, è necessario progettare un meccanismo di concorrenza per gestire diversi 
 			stati degli oggetti condivisi. Se lo stato di un oggetto condiviso viene aggiornato 
 			da un thread, gli altri thread devono essere avvisati in modo che possano gestire 
 			l'oggetto di conseguenza.
-			A volte, vogliamo porre restrizioni sugli oggetti condivisi. Ad esempio, � 
-			possibile condividere solo oggetti di sola lettura o � presente una sola istanza di 
+			A volte, vogliamo porre restrizioni sugli oggetti condivisi. Ad esempio, è 
+			possibile condividere solo oggetti di sola lettura o è presente una sola istanza di 
 			una classe. Questo modello introduce due modelli di concorrenza che ci aiutano 
 			a raggiungere l'obiettivo di cui sopra.
 			Il double-check per il lock e l'object immutable come lock
+
+	---- ---- ----
 
 	Monitor Object
 
@@ -169,17 +234,17 @@ Concurrency Patterns
 			l'esecuzione del metodo viene eseguita da un thread indipendente in modo asincrono 
 			senza bloccare il thread client. Pertanto, il thread client non viene vincolato 
 			fino al termine dell'esecuzione del metodo. Dopo aver richiamato un metodo e inviato 
-			il comando per eseguirlo all'utilit� di pianificazione o al dispatcher, � possibile 
-			eseguire altre attivit�.
+			il comando per eseguirlo all'utilità di pianificazione o al dispatcher, è possibile 
+			eseguire altre attività.
 			Il metodo viene richiamato su Active Object. Un oggetto attivo ha un'interfaccia 
 			pubblica denominata proxy. L'oggetto attivo crea un messaggio (modello di comando) 
 			che contiene le informazioni sulla chiamata al metodo e le inserisce nella coda 
-			dei messaggi. Dopo che il messaggio � stato messo in coda, l'utilit� di pianificazione 
+			dei messaggi. Dopo che il messaggio è stato messo in coda, l'utilità di pianificazione 
 			o il dispatcher riceve una notifica per leggere il messaggio. 
-			L'Utilit� di pianificazione legge il messaggio decommettendolo dalla coda dei messaggi. 
-			Dopo aver letto il messaggio, l'Utilit� di pianificazione crea uno o pi� thread 
-			denominati Servant per ogni esecuzione del metodo. Il messaggio inviato dall'Utilit� 
-			di pianificazione viene interpretato ed eseguito dal Servo. Il metodo pu� restituire 
+			L'Utilità di pianificazione legge il messaggio decommettendolo dalla coda dei messaggi. 
+			Dopo aver letto il messaggio, l'Utilità di pianificazione crea uno o più thread 
+			denominati Servant per ogni esecuzione del metodo. Il messaggio inviato dall'Utilità 
+			di pianificazione viene interpretato ed eseguito dal Servo. Il metodo può restituire 
 			un risultato come implementazione futura al client.
 
 	Producer/Consumer
@@ -187,7 +252,7 @@ Concurrency Patterns
 		Quando utilizzare questo Pattern e scopi.:
 
 			Il modello Produttore/Consumatore viene utilizzato per disaccoppiare i processi che
-			producono e consumano dati a velocit� diverse. 
+			producono e consumano dati a velocità diverse. 
 			Gli anelli paralleli del modello Produttore/Consumatore sono suddivisi in due categorie; 
 			quelli che producono dati e quelli che consumano i dati prodotti. 
 			Le code di dati sono utilizzato per comunicare i dati tra i loop nel modello di 
@@ -195,4 +260,181 @@ Concurrency Patterns
 			Queste code offrono il vantaggio del buffering dei dati tra i loop del produttore e 
 			del consumatore.
 		
+	Leader/Followers
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Il modello architettonico Leader/Follower fornisce un modello di concorrenza efficiente 
+			in cui più thread si alternano condividendo una serie di origini eventi al fine di 
+			rilevare, demultiplare, inviare ed elaborare le richieste di servizio che si verificano 
+			sulle origini degli eventi.
+
+	Half-Sync/Half-Async
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Il modello architettonico Half-Sync/Half-Async disaccoppia l'elaborazione dei servizi 
+			asincrona e sincrona nei sistemi concorrenti, per semplificare la programmazione senza 
+			ridurre le prestazioni. Il modello introduce due livelli intercomunicanti, uno per 
+			l'elaborazione del servizio asincrono e uno per l'elaborazione sincrona del servizio 
+			con uno strato di accodamento tra i diversi layer tramite una coda.
+
+	---- ---- ----
+	Binding Properties
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Il modello Binding properties combina più osservatori per forzare la sincronizzazione 
+			o il coordinamento di proprietà in oggetti diversi. 
+			Questo modello è stato descritto per la prima volta come una tecnica da Victor Porton.
+			Questo modello rientra nei modelli di concorrenza.
+			In alternativa all'implementazione orientata agli aspetti delle proprietà reciproche, 
+			è possibile proporre il vincolo di proprietà. 
+			Anche nella libreria LibPropC++ C++ è implementato. 
+			Alcuni punti deboli in LibPropC++ (con associazione di proprietà):
+				- Il suo utilizzo non è trasparente in quanto richiede che vengano dichiarati 
+				  gli attributi dell'oggetto necessari in quanto devono essere fornite proprietà 
+				  e metodi di accesso appropriati.
+				- L'associazione degli attributi in LibPropC++ non è progettata per sostituire 
+				  le chiamate ai metodi 
+				- La libreria non mantiene una cronologia delle interazioni.			
+			Per dotnet c# questo modello di progettazione è già presente nel framework ed è ampiamente
+			usato per l'associazione uniderezionale e bidirezionale, verso liste oggetti e componenti UI
+			dove questi ultimi ne fanno largo uso.
+			In C# questo aspetto nel framework è legato molto al DataBinding che per definizione viene
+			proiettato come metodi del framewrok per associare i dati a componenti visivi.
+			L'associazione dati è una tecnica potente per lo sviluppo di interfacce utente: 
+				- semplifica la separazione della logica di visualizzazione dalla logica 
+				  di business e il test del codice risultante. Sebbene sia presente in 
+				  Microsoft .NET Framework sin dall'inizio, l'associazione dati è diventata 
+				  più importante con l'avvento di Windows Presentation Foundation (WPF) 
+				  e XAML, in quanto costituisce il "collante" tra View e ViewModel nel modello 
+				  Model-View-ViewModel (MVVM)
+			Il framework stesso per l'appunto per definizione ha i metodi interni per l'associazione
+			unidirezionale e bidirezionale ottimizzando i thread per un corretto uso della concorrenza.
+
+	---- ---- ----
+	Reactor/Proactor
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Il modello di progettazione del Reactor è un modello di gestione degli eventi per la 
+			gestione delle richieste di servizio recapitate contemporaneamente a un gestore del 
+			servizio da uno o più input. 
+			Il gestore del servizio esegue quindi il demultiplex delle richieste in ingresso e le 
+			invia in modo sincrono ai gestori delle richieste associati.
+			Tutti i sistemi di reattori sono a thread singolo per definizione, ma possono esistere 
+			in un ambiente multithread Proactor.
+			Il modello del reattore può essere più difficile da eseguire il debug rispetto a un modello 
+			procedurale a causa del flusso invertito di controllo. 
+			Inoltre, chiamando solo i gestori delle richieste in modo sincrono, il modello del 
+			reattore limita la massima concorrenza, in particolare su hardware multiprocessing 
+			simmetrico. 
+			La scalabilità del modello del Reacotr è limitata non solo chiamando i gestori delle 
+			richieste in modo sincrono, ma anche dal demultiplexer.
+			E' allegato una fonte completa illustrativa che definisce la differenza tra i due modelli
+			Il Reactor da una parte e il Proactor dall'altra.
+			Il documento che esaurisce l'aspetto per esempi di modello con handling di eventi diversifica
+			i tipi di Reactor e Proactor implementativi adottando la gestione di un thread o di più
+			thread, e di come secondo un modello Event-Driven questo possa rispondere a determinati tipi
+			di eventi classificati come.:
+				Event sources: Individua e recupera gli eventi.
+				Demultiplexer: Attende che si verifichino eventi sul set di origini eventi
+							   e li invia ai callback dei relativi gestori di eventi.
+				EventHandlers: Esegue operazioni specifiche dell'applicazione in risposta ai callback.
+			Reactor e Proactor sono due modelli di gestione degli eventi che offre due diverse soluzioni 
+			per applicazioni simultanee.
+			Indicano come avviare, ricevere, demultiplare, spedire in modo efficace ed eseguire vari tipi 
+			di eventi in framework software in rete.
+			Il design di questi modelli fornisce riutilizzabili e configurabili soluzioni e componenti 
+			dell'applicazione.
+
+	---- ---- ----
+	Scheduling Task
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Un modello di Scheduler-Task è un tipo di modello di progettazione software utilizzato con 
+			i sistemi in tempo reale. Non deve essere confuso con il modello "Scheduler" che orgnaizza
+			e tratta per l'hardware lo scheduling per l'accesso alle risorse per processore network e 
+			periferiche ed è importante per sistemi embedded realtime e robotica.
+			Piuttosto un modello di Scheduler-Task è un'attività pianificata consiste fondamentalmente 
+			di tre elementi: 
+				l'attività stessa.
+				i processi che eseguono la pianificazione definendo quando l'attività che viene 
+				eseguita e quando è consentita l'esecuzione.
+				il registro dei processi che esegue questo processo.
+			Il modello dell'utilità di pianificazione ritarda l'accesso a una risorsa (sia essa una 
+			funzione, una variabile o altro) solo per il tempo assolutamente necessario, il modello 
+			di attività pianificata ritarda l'esecuzione fino a un determinato periodo di tempo. 
+			Questo è importante nei sistemi in tempo reale per una serie di motivi.
+			L'evoluzione del framework .net fino a oggi ha apportato al framework stesso tutta una 
+			serie di evolutive per utilizzare questo modello, e nelle soluzioni più varie.
+			Innanzi tutto riporto il link qui.: 
+			https://learn.microsoft.com/it-it/dotnet/api/system.threading.tasks.taskscheduler?view=net-6.0
+			dove si può vedere un elenco completo delle varie possibilità offerte da questo framework
+			e in sostanza possiamo suddividerli in Task orgnaizzati per l'esecuzione in background,
+			Task per essere eseguiti in contesti Sincroni o Asincroni dove appunto è necessario l'avvio
+			di una nuova operazione per ogni metodo dichiarato asincrono il quale restituisce di fatto
+			un Task schedulato che porterà con sè alla fine il risultato dell'operazione. Di fatto abbiamo
+			poi il vero e proprio TaskScheduler implementato nel framework che Rappresenta un oggetto che gestisce 
+			le operazioni di basso livello relative all'accodamento delle attività nei thread.
+			--> public abstract class TaskScheduler e ne riportiamo l'esempio in questo lab. 
+			Questo excursus solo per identificare il Modello di progettazione previsto per questi tipi
+			di oggetti chiamamoli così che lavorano in modo indipendente nel sistema hardware per fare
+			e completare operazioni liberando il contesto dell'idle del processore a fare nello stesso
+			tempo altre operazioni. Questo scheduling software da parte del framework .net è vasto e 
+			vario e bisogna adoperarsi per meglio padroneggiare questo mdello in questo linguaggio usando
+			esempi a corredo della voluminosa documentazione microsoft.
+
+	---- ---- ----
+	Thread Pool
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Nella programmazione per computer, un pool di thread è un modello di progettazione 
+			software per ottenere la concorrenza di esecuzione in un programma per computer. 
+			Spesso chiamato anche un modello replicato di worker worker o worker-crew,
+			un pool di thread mantiene più thread in attesa che le attività vengano allocate per 
+			l'esecuzione simultanea da parte del programma di supervisione. Mantenendo un pool 
+			di thread, il modello aumenta le prestazioni ed evita la latenza nell'esecuzione a 
+			causa della frequente creazione e distruzione di thread per attività di breve durata. 
+			Il numero di thread disponibili è sintonizzato sulle risorse di elaborazione disponibili 
+			per il programma, ad esempio una coda di operazioni parallela dopo il completamento 
+			dell'esecuzione.
+
+	Thread-Local
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Thread-local storage (TLS) è un metodo di programmazione del computer che utilizza 
+			la memoria statica o globale locale in un thread.
+			Mentre l'uso di variabili globali è generalmente scoraggiato nella programmazione 
+			moderna, i sistemi operativi legacy come UNIX sono progettati per l'hardware 
+			uniprocessore e richiedono un meccanismo aggiuntivo per mantenere la semantica 
+			delle API pre-rientranti. 
+			Un esempio di tali situazioni è quando le funzioni utilizzano una variabile globale 
+			per impostare una condizione di errore (ad esempio la variabile globale utilizzata 
+			da molte funzioni della libreria C). Se fosse una variabile globale, una chiamata 
+			di una funzione di sistema su un thread potrebbe sovrascrivere il valore 
+			precedentemente impostato da una chiamata di una funzione di sistema su un 
+			thread diverso, possibilmente prima di seguire il codice su quel thread 
+			diverso potrebbe verificare la condizione di errore. 
+			La soluzione è quella di essere una variabile che sembra essere globale, ma in 
+			realtà esiste una volta per thread, cioè vive nello storage locale del thread. 
+			Un secondo caso d'uso sarebbe costituito da più thread che accumulano informazioni 
+			in una variabile globale. Per evitare una race condition, ogni accesso a questa 
+			variabile globale dovrebbe essere protetto da un mutex. 
+			In alternativa, ogni thread potrebbe accumularsi in una variabile thread-local 
+			(che, per definizione, non può essere letta o scritta da altri thread, il che implica che 
+			non ci possono essere condizioni di gara). I thread devono quindi solo sincronizzare un 
+			accumulo finale dalla propria variabile thread-local in una singola variabile veramente 
+			globale. 
+			Molti sistemi impongono restrizioni sulla dimensione del blocco di memoria thread-locale, 
+			infatti spesso limiti piuttosto stretti. D'altra parte, se un sistema può fornire almeno 
+			un indirizzo di memoria (puntatore) dimensione variabile thread-local, allora questo 
+			consente l'uso di blocchi di memoria di dimensioni arbitrarie in modo thread-local, 
+			allocando tale blocco di memoria dinamicamente e memorizzando l'indirizzo di memoria 
+			di quel blocco nella variabile thread-local. Sui computer RISC, la convenzione di 
+			chiamata spesso riserva un registro del puntatore del thread per questo utilizzo.
 
