@@ -74,7 +74,6 @@ Cosa devo applicare quando e come?
 								* Proxy
 								* Flyweight
 								* Decorator
-								* Message Pattern --> intro to microservice
 								Private Class Data
 								Marker
 								Extensibility
@@ -120,6 +119,7 @@ Cosa devo applicare quando e come?
 								* Command
 								* Template Method
 								* Interpreter
+								*' BlackBoard
 
 Modelli Concurrency (and parallel)
 
@@ -172,30 +172,53 @@ Modelli Architetturali
 		Per sistemi di grandi dimensioni è indispensabile definire le linee guida per lo sviluppo 
 		per evitare di perdere il controllo del software e di non rispettare i requisiti richiesti.
 
-								* Front controller
-								*' Interceptor
-								*' BlackBoard
 								
+								Group 
+								// Design
+								*' Layered
+								*' Client Server
+								*' Master Slave
+								*' Pipe Filter
+								*' Peer to Peer
+								*' Interceptor
+								*' Event Source
+								*' Broker
+								*' Publish–subscribe
+								*' DDD (Domain Driven Design)
+
+								Group
+								// Logic
+								*' Front controller
 								* MVC
 								* MVVM
 								* MVP
+								*' Model 2
 								*' ADR
-								
-								ECS
-								n-tier
-								
-								* Specification (Trattato in Behavioral)
-								
-								Publish–subscribe
-								Naked objects
-								Service locator
-								Active record
+								*' Naked objects
+								* Specification 
+								*' ECS
+
+								Group
+								// Data Access
+								Data access object (DAO)
+								Data transfer object (DTO)
 								Identity map
-								Data access object
-								Data transfer object
+								Active record
+
+								Group
+								// Service
+								* Message Broker	--> intro to microservice
 								Inversion of control (IoC)
-								Model 2
-								Broker
+								Service locator
+
+								Group
+								// Layered
+								n-layered
+								n-tier
+								Hexagonal
+								Onion
+								Clean
+								
 
 Conclusione
 

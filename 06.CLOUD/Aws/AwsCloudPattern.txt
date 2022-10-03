@@ -1,0 +1,71 @@
+
+
+	AWS Cloud Design Patterns: un esempio pratico
+	
+		Immagina di avere il nostro sito web ospitato su un server virtuale EC2 e la nostra 
+		direzione ci ha chiesto di ottenere l'alta disponibilità per la nostra infrastruttura. 
+		
+		Dobbiamo prima prendere un'immagine del nostro server e un'immagine dei nostri dati 
+		del disco, queste operazioni sono descritte da Stamp Pattern e Snapshot Pattern.
+
+		// File 1: 2XNdewVsgellO3x8-3FAF6-300x265.png
+		// File 2: 2XNdewVsgellO3x8-B8482-300x190.png
+
+		Ora, come primo approccio al disaster recovery del nostro sistema, dobbiamo avere gli 
+		strumenti per ricostruire tutto in breve tempo. 
+		
+		Qui siamo aiutati da questi due modelli: Server Swapping e Floating IP Pattern
+
+		// File 1 : 2XNdewVsgellO3x8-01890-300x267.png
+		// File 2 : 2XNdewVsgellO3x8-4570E-300x234.png
+
+		Ma il nostro approccio all'alta disponibilità non può finire qui, dobbiamo fornire 
+		ridondanze su più server e su più data center. Soluzioni descritte in questi altri 
+		due modelli: Multi-Server Pattern e Multi-Datacenter Pattern
+
+		// File 1 : 6wNg0ISJczU5Pz1m-221B9-300x245.png
+		// File 2 : 6wNg0ISJczU5Pz1m-CC059.png
+
+		La distribuzione del carico di lavoro su più server front-end ci costringe a separare 
+		il servizio di database dall'installazione iniziale a server singolo. 
+		
+		Quindi ora abbiamo bisogno di un approccio a DB HA. In AWS questo è facilmente realizzabile 
+		con la funzionalità Multi-Az di RDS. 
+		
+		Questo è menzionato nel modello DB Replication_Pattern.Ora, il nostro sito Web è 
+		dinamico, non statico. Pertanto, potrebbero esserci dati da aggiornare o condividere 
+		tra server front-end. In questo caso, non ci resta che scegliere se utilizzare un 
+		Network File System (NFS Sharing Pattern), magari replicando dati condivisi su dischi 
+		locali (NFS Replica Pattern) per aumentarne le prestazioni. 
+		
+		O forse è sufficiente condividere solo gli stati tra i server front-end (State Sharing Pattern).
+
+		// File 1 : 2XNdewVsgellO3x8-63945-273x300.png
+		
+		Tuttavia, mi piace una soluzione più cloud-aware, quindi invece di un NFS, potremmo utilizzare 
+		un sistema di storage di oggetti ad alta disponibilità come AWS S3 con sincronizzazione 
+		CloudFront (URL Rewriting Pattern).
+
+		// File 1 : 2XNdewVsgellO3x8-570C8-300x267.png
+
+		Quindi, in caso di utilizzo intelligente dell'object storage S3, dobbiamo anche fornire un 
+		caricamento diretto dei contenuti in S3, per sfruttarci la scalabilità del sistema S3 
+		(Direct Upload Object Pattern). 
+		
+		Questo modello richiede ulteriori informazioni sull'autenticazione diretta all'S3.
+		Ora siamo pronti e abbiamo una buona soluzione ad alta disponibilità. 
+		Ma dobbiamo considerare la sicurezza della nostra soluzione, quindi uno sguardo 
+		al Functional Firewall Pattern potrebbe essere utile.
+
+		Dopo aver reso sicura la nostra soluzione, ora dobbiamo monitorarla e consentire la 
+		manutenzione, quindi leggere a Operational Firewall Pattern può sicuramente essere 
+		stimolante.
+
+		// File 1 : 2XNdewVsgellO3x8-68E67-300x216.png
+		// File 2 : 2XNdewVsgellO3x8-3808B-300x259.png
+
+		Quello che abbiamo visto finora è un buon e completo esempio dei modelli disponibili su 
+		questo sito Web e dedicati ad Amazon Cloud. Ce ne sono molti altri da valutare e prendere 
+		come esempio per le nostre esigenze, quindi sentiti libero di sfogliarlo e leggerlo a fondo. 
+		
+

@@ -1,0 +1,157 @@
+
+
+	Utili per creare applicazioni e servizi altamente affidabili, scalabili e sicuri all'interno 
+	del cloud, i Cloud Design Patterns (CDP) sono definiti dagli esperti del settore del 
+	Cloud Computing come 
+	
+		"[una] soluzione generale riutilizzabile ai problemi che si verificano comunemente nell'architettura cloud". 
+
+	Apparentemente una definizione ampia, può aiutare a capire che i CPD sono multipli, non adatti 
+	a tutti. Considerando che i CDP vengono utilizzati per risolvere "problemi comuni", si può dire 
+	che complessivamente questi modelli sono una libreria di soluzioni riutilizzabili a problemi 
+	unici o individuali che molti cloud builder incontrano.
+
+	In questo post, discuteremo i CDP in modo più dettagliato. Inoltre, nel tentativo di aiutare con 
+	l'architettura di Amazon Web Service, esplorando quali sono i modelli di progettazione e come 
+	utilizzarli, daremo un'occhiata ai CDP AWS e al futuro delle tecnologie di progettazione AWS.
+
+	Un'ampia panoramica di ciò che comporta un CDP
+
+	Proprio come posare un pavimento piastrellato con cura per il modello e il design, la creazione 
+	di applicazioni cloud richiede che ogni riga (livello) sia disposta (codificata) perfettamente 
+	prima della successiva. 
+	
+	Se il livello inferiore è instabile, anche i livelli precedenti saranno instabili. 
+	Immagina di posare un pavimento senza preoccuparti di come appariva ogni piastrella, 
+	probabilmente finirebbe piuttosto male. 
+	
+	Quando si progetta un'applicazione cloud, un ingegnere è sempre attentamente attento ai problemi. 
+	Quando sorgono problemi generali, l'ingegnere cerca di risolverli in modo affidabile e sicuro 
+	con una soluzione collaudata. I CDP fanno risparmiare tempo e possibili risultati disordinati 
+	per tutti.
+
+	Generalmente disponibile in un formato standard, ecco cosa troverai in un singolo 
+	Cloud Design Pattern:
+
+		Nome del modello e breve descrizione
+		Identificazione del problema e delle sfide tipiche
+		Uno schema per risolvere il problema nel cloud
+		I vantaggi che derivano dall'applicazione del modello
+		Eventuali note extra inclusi vantaggi, svantaggi, spiegazioni delle note
+		Qualsiasi altra cosa l'architetto si preoccupa di aggiungere
+
+	Perché utilizzare i CDP?
+	
+	Oltre al semplice utilizzo di modelli per potenziare l'architettura cloud per migrare 
+	facilmente e sviluppare rapidamente applicazioni altamente scalabili, ci sono alcuni 
+	altri vantaggi in questa libreria di soluzioni. 
+	
+	Le grandi imprese, così come le startup, stanno utilizzando i CDP per sbloccare 
+	un valore incredibile su larga scala. Lavorando per garantire risultati ripetibili 
+	al 100% durante l'intero ciclo di vita di una piattaforma e per rimuovere la 
+	manutenzione delle applicazioni distribuite, i modelli generali di frustrazione 
+	dell'esecuzione di un sistema cloud vengono ridotti mentre aumenta la produttività.
+
+	Oltre ai vantaggi a livello di sistema, gli architetti sperimentano anche i 
+	vantaggi dei CDP. Immagina che mentre lavori su un'applicazione AWS, ti imbatti in 
+	un problema mentre aumenti l'efficienza dello storage Internet. 
+	
+	Descrivi il problema a un altro architetto e lei risponde: 
+		"Il modello dell'indice di archiviazione funzionerà per questo". 
+		
+	Conoscendo il nome del modello, ti metti subito al lavoro. Questo è un linguaggio 
+	utilizzato per comunicare e risolvere facilmente i problemi. Avendo un'idea chiara 
+	di tutte le applicazioni cloud prima di iniziare qualsiasi progetto, con l'aiuto 
+	dei CDP non è necessario iniziare da zero quando si crea un sistema software.
+	
+	Cosa sono i CDP AWS?
+	Poiché Amazon è uno dei tre grandi nel settore del cloud computing insieme a 
+	Google e Microsoft, non sarà uno shock che, con tutti i suoi componenti, AWS 
+	abbia una serie di CDP. 
+	
+	Sebbene non siano ufficialmente elencati con alcun riferimento specifico da AWS, 
+	i modelli per AWS sono stati progettati in modo non ufficiale da tre architetti Amazon. 
+	
+	Lasciando i dettagli di ogni CDP AWS su un Wiki, oltre a questa risorsa è bene 
+	notare che la maggior parte dei CDP sono piuttosto intercambiabili per diversi 
+	servizi cloud. 
+	
+	I nomi per ogni CDP possono essere diversi, tuttavia, con i dettagli standard 
+	sopra menzionati, la descrizione del modello includerà come risolverlo in AWS 
+	o nel servizio cloud specifico.
+
+	Principali modelli di base di AWS
+
+		Snapshot Pattern (backup dei dati) - 
+		Assicurando che i dati siano al sicuro, questo modello è ideale per quando 
+		si eseguono controlli di aggiornamento del programma che richiedono sezioni 
+		trasversali dei dati e il coping del sistema operativo e dei dati. 
+		Consentendo di scattare una "istantanea", quando vengono utilizzate copie 
+		di ciascun sistema operativo.
+
+		Stamp Pattern (replica del server) – 
+		Riducendo il lavoro, il tempo e le spese necessarie per configurare un server 
+		virtuale, questo modello copia essenzialmente il server virtuale con funzioni 
+		già configurate per l'uso. È ottimo per creare grandi quantità di server virtuali.
+
+		Scale-Up Pattern (dynamic server spec up/down) – 
+		Questo modello consente ai costruttori di regolare le specifiche del server per 
+		l'utilizzo senza sostituire il server e reinstallare il sistema operativo.
+
+		Modello di scalabilità orizzontale (aumento dinamico del numero di server) - 
+		consente di abbinare variazioni impreviste del volume di traffico senza aumentare 
+		i costi per una specifica elevata in un server con specifiche elevate. 
+		Questo modello semplifica la "scalabilità verticale" per modificare il numero di 
+		server virtuali che gestiscono l'elaborazione.
+
+		Modello dish on-demand (aumento/diminuzione dinamica della capacità del disco)- 
+		interrompere l'elaborazione di stime elaborate della capacità del disco prima della 
+		creazione e ridurre i costi dell'investimento hardware iniziale. 
+		La rata di dischi virtuali con questo modello fornisce una capacità illimitata.
+
+	Categorie di modelli AWS
+
+		Oltre ai cinque CDP AWS di base e più utilizzati, ogni area della seguente applicazione 
+		cloud dispone anche di più soluzioni di pattern:
+
+			Alta disponibilità
+			Elaborazione di contenuto dinamico
+			Elaborazione di contenuto statico
+			Caricamento dei dati
+			Database relazionale
+			Elaborazione batch
+			Funzionamento e manutenzione
+			Rete
+
+	Lambda e il futuro di AWS CDP
+
+		Man mano che le tecnologie nei servizi cloud crescono e le innovazioni vengono implementate, 
+		è possibile che i CDP non si applichino più. 
+		
+		Inoltre, nel prossimo futuro, potrebbero non essere nemmeno necessari grazie a tecnologie 
+		come Lambda di AWS. Come piattaforma di elaborazione serverless, 
+			"è un servizio di elaborazione che esegue codice in risposta a eventi e gestisce 
+			 automaticamente le risorse di elaborazione richieste da quel codice". 
+		
+		Ciò significa che Lambda può risolvere determinati problemi di progettazione cloud senza 
+		l'attenzione di un architetto cloud. 
+		
+		Sebbene attualmente non risolva tutti i problemi CDP, è possibile che presto l'architettura 
+		basata su eventi sostituisca le soluzioni attivate manualmente.
+
+		Non importa dove porterà il futuro per CDP, una cosa è certa, l'espansione e la crescita 
+		dei servizi cloud è inevitabile. 
+		
+		Attualmente, per gestire questa crescita, AWS ha un servizio chiamato Cloud Pattern Studio. 
+		
+		Essenzialmente una funzionalità di modello in cui le soluzioni in un modello vengono 
+		combinate con Cloud Formation e quindi inserite in un modello, è progettato per 
+		progettare e distribuire visivamente stack software di ambiente su AWS.
+
+		Se stai pensando di passare al cloud o di eseguire già la tua organizzazione sul cloud, 
+		capire come eseguire carichi di lavoro basati su cloud e sbloccare la vera potenza di 
+		una piattaforma farà risparmiare denaro e fatica a lungo termine. 
+		
+		Sfruttare modelli ben noti per risolvere i problemi che i costruttori hanno incontrato 
+		durante l'esecuzione di software cloud è molto prezioso in questa era in evoluzione.
+
