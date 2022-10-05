@@ -1,0 +1,127 @@
+
+Data Access Patterns (DAL)
+
+	Premesessa 
+
+		In cosa consiste questa raccolta di Pattern?
+		Questa sezione raccoglie una serie di pattern strettamente legati all'accesso ai dati e quindi
+		ai database in generale. Si sofferma su dei punti prettamente tecnici e relativi alle modalità
+		ed ai modelli di design usati per l'accesso diretto o indiretto alla fonte dati.
+
+		Questa serie di pattern e la loro adozione aiutano lo sviluppo e procedono a dare le giuste
+		supposizioni a come interagire con queste tipologie di server DBMS.
+
+		Nota a parte per ambienti Microsoft (DAL) Data Access Layer
+
+		Queste implementazioni creano un livello a sè per l'accesso ai dati che appunto viene definito
+		in breve con il nome DAL che è un livello di un programma per computer che fornisce un accesso 
+		semplificato ai dati memorizzati in una memoria persistente di qualche tipo, come un database 
+		relazionale di entità. 
+		
+		Questo acronimo è utilizzato prevalentemente in ambienti Microsoft.
+		
+		Ad esempio, il DAL potrebbe restituire un riferimento a un oggetto (in termini di 
+		programmazione orientata agli oggetti) completo dei relativi attributi anziché una riga di 
+		campi da una tabella di database. 
+		
+		Ciò consente di creare i moduli client (o utente) con un livello superiore di astrazione. 
+		
+		Questo tipo di modello potrebbe essere implementato creando una classe di metodi di accesso 
+		ai dati che fanno riferimento direttamente a un set corrispondente di stored procedure di 
+		database. 
+		
+		Un'altra implementazione potrebbe potenzialmente recuperare o scrivere record da o verso un 
+		file system. 
+		
+		Il DAL nasconde questa complessità dell'archivio dati sottostante al mondo esterno.
+		
+		Ad esempio, invece di utilizzare comandi quali insert, delete e update per accedere a una 
+		tabella specifica in un database, è possibile creare una classe e alcune stored procedure 
+		nel database. 
+		
+		Le procedure verrebbero chiamate da un metodo all'interno della classe, che restituirebbe 
+		un oggetto contenente i valori richiesti. Oppure, i comandi di inserimento, eliminazione 
+		e aggiornamento potrebbero essere eseguiti all'interno di semplici funzioni come 
+		registeruser o loginuser memorizzate all'interno del livello di accesso ai dati.
+		
+		Inoltre, i metodi di logica di business di un'applicazione possono essere mappati al livello 
+		di accesso ai dati. 
+		
+		Quindi, ad esempio, invece di effettuare una query in un database per recuperare tutti gli 
+		utenti da diverse tabelle, l'applicazione può chiamare un singolo metodo da un DAL che astrae 
+		tali chiamate al database.
+		
+		Le applicazioni che utilizzano un livello di accesso ai dati possono essere dipendenti dal 
+		server di database o indipendenti. 
+		
+		Se il livello di accesso ai dati supporta più tipi di database, l'applicazione diventa in 
+		grado di utilizzare qualsiasi database con cui il DAL può comunicare. 
+		
+		In entrambe le circostanze, avere un livello di accesso ai dati fornisce una posizione 
+		centralizzata per tutte le chiamate nel database e quindi semplifica il porting 
+		dell'applicazione su altri sistemi di database (supponendo che il 100% dell'interazione 
+		del database venga eseguita nel DAL per una determinata applicazione).
+
+		** DAL da non confondere come acronimo Database Abstraction Layer che è un paradigma di
+		   sviluppo per la connessione a db agnostici.
+
+	---- ---- ---- ----
+	- Data Access Objects
+
+	DAO. 
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Un oggetto di accesso ai dati (DAO) è un modello che fornisce un'interfaccia astratta 
+			a un tipo di database o altro meccanismo di persistenza. 
+			Mappando le chiamate dell'applicazione al livello di salvataggio permanente, 
+			IL DAO fornisce alcune operazioni di dati specifiche senza esporre i dettagli 
+			del database. 
+			Questo isolamento sostiene il principio della responsabilità unica. 
+			Separa l'accesso ai dati di cui l'applicazione ha bisogno, in termini di oggetti e 
+			tipi di dati specifici del dominio (l'interfaccia pubblica del DAO), 
+			da come queste esigenze possono essere soddisfatte con uno specifico DBMS, 
+			schema di database, ecc. (l'implementazione del DAO).
+			In Java l'aspetto di queste componenti sono relegate ai sistemi server dove viene
+			sviluppato il prodotto JavaEE, in .Net le librerie implementate secondo questo pattern
+			sono state varie e cambiate di nome e suffisso fino ad essere presenti nel framework
+			stesso sotto il nome di ADO.NET e con namespace ormai consolidato system.data.
+
+	ORM.
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Più che definirlo come modello di progettazione o pattern è inserito in questo sunto
+			di proposito perchè ormai è consolidato e abbastanza usato come tecnica di programmazione 
+			che favorisce l'integrazione di sistemi software aderenti al paradigma della 
+			programmazione orientata agli oggetti con sistemi RDBMS.
+			Un prodotto ORM fornisce, mediante un'interfaccia orientata agli oggetti, tutti i servizi 
+			inerenti alla persistenza dei dati, astraendo nel contempo le caratteristiche implementative 
+			dello specifico RDBMS utilizzato.
+
+	DATA ACCESSOR.
+	
+		Quando utilizzare questo Pattern e scopi.:
+
+			Quando sorge la necessità di incapsulare l'accesso ai dati fisici in un componente 
+			separato, esponendo solo operazioni logiche. 
+			Il codice dell'applicazione viene disaccoppiato dalle operazioni di accesso ai dati.
+
+	ACTIVE DOMAIN OBJECT
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Incapsula il modello di dati e i dettagli di accesso ai dati all'interno di un oggetto di 
+			dominio pertinente. In altre parole, un oggetto dominio attivo astrae la semantica dell'archivio 
+			dati sottostante (ad esempio, SQL Server) e della tecnologia di accesso ai dati sottostante 
+			(ad esempio, ADO.NET) e fornisce una semplice interfaccia programmatica per il recupero e 
+			il funzionamento dei dati.
+
+	LAYERS
+
+		Quando utilizzare questo Pattern e scopi.:
+
+			Impilare funzionalità di applicazioni ortogonali che accedono ai dati con livelli crescenti 
+			di astrazione.
+
+				

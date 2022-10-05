@@ -1,0 +1,25 @@
+
+
+Data Management (Category)
+
+	La gestione dei dati è l'elemento chiave delle applicazioni cloud e influenza la maggior 
+	parte degli attributi di qualità. I dati sono in genere ospitati in posizioni diverse e 
+	su più server per motivi quali prestazioni, scalabilità o disponibilità, e questo può 
+	presentare una serie di sfide. Ad esempio, la coerenza dei dati deve essere mantenuta 
+	e i dati dovranno in genere essere sincronizzati in posizioni diverse.
+
+	Inoltre, i dati devono essere protetti a riposo, in transito e tramite meccanismi di 
+	accesso autorizzati per mantenere garanzie di sicurezza di riservatezza, integrità e 
+	disponibilità. 
+
+	Questi sono quelli in questa categoria
+
+	Cache-Aside				Load data on demand into a cache from a data store
+	CQRS					Segregate operations that read data from operations that update data by using separate interfaces.
+	Event Sourcing			Use an append-only store to record the full series of events that describe actions taken on data in a domain.
+	Index Table				Create indexes over the fields in data stores that are frequently referenced by queries.
+	Materialized View		Generate prepopulated views over the data in one or more data stores when the data isn't ideally formatted for required query operations.
+	Sharding				Divide a data store into a set of horizontal partitions or shards.
+	Static Content Hosting	Deploy static content to a cloud-based storage service that can deliver them directly to the client.
+	Valet Key				Use a token or key that provides clients with restricted direct access to a specific resource or service.
+
